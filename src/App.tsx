@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useReducer } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import ToastContainer from "react-bootstrap/ToastContainer";
-import Toast from "react-bootstrap/Toast";
+import Notifications from "./notifications/Notifications";
+import { nextId as nextNotificationId } from "./notifications/notification";
+import { add as addNotification } from "./notifications/actions";
+import notificationsReducer from "./notifications/reducer";
+import NotificationsDispatch from "./notifications/NotificationsDispatch";
 
 async function handleShutDownClick(onSuccess: () => void, onError: () => void) {
   try {
@@ -27,11 +30,13 @@ async function handleShutDownClick(onSuccess: () => void, onError: () => void) {
 }
 
 function App() {
-  const [showShutDownInfo, setShowShutDownInfo] = useState(false);
-  const [showShutDownError, setShowShutDownError] = useState(false);
+  const [notificationsState, dispatchNotifications] = useReducer(
+    notificationsReducer,
+    []
+  );
 
   return (
-    <>
+    <NotificationsDispatch.Provider value={dispatchNotifications}>
       <Container fluid>
         <Row>
           <Col>
@@ -50,11 +55,25 @@ function App() {
                   <Button
                     variant="danger"
                     onClick={() => {
-                      setShowShutDownInfo(false);
-                      setShowShutDownError(false);
                       handleShutDownClick(
-                        () => setShowShutDownInfo(true),
-                        () => setShowShutDownError(true)
+                        () =>
+                          dispatchNotifications(
+                            addNotification({
+                              id: nextNotificationId(),
+                              level: "info",
+                              message:
+                                "Shutting down computer - please wait for green light to stop flashing before removing power.",
+                              autohide: true,
+                            })
+                          ),
+                        () =>
+                          dispatchNotifications(
+                            addNotification({
+                              id: nextNotificationId(),
+                              level: "warn",
+                              message: "Failed to send shut down request.",
+                            })
+                          )
                       );
                     }}
                   >
@@ -66,34 +85,8 @@ function App() {
           </Col>
         </Row>
       </Container>
-      <ToastContainer position="top-end" className="p-3">
-        <Toast
-          bg="info"
-          onClose={() => setShowShutDownInfo(false)}
-          show={showShutDownInfo}
-          delay={30 * 1000}
-          autohide
-        >
-          <Toast.Header>
-            <strong className="me-auto">Information</strong>
-          </Toast.Header>
-          <Toast.Body>
-            Shutting down computer - please wait for green light to stop
-            flashing before removing power.
-          </Toast.Body>
-        </Toast>
-        <Toast
-          bg="warning"
-          onClose={() => setShowShutDownError(false)}
-          show={showShutDownError}
-        >
-          <Toast.Header>
-            <strong className="me-auto">Error</strong>
-          </Toast.Header>
-          <Toast.Body>Failed to send shut down request.</Toast.Body>
-        </Toast>
-      </ToastContainer>
-    </>
+      <Notifications state={notificationsState} />
+    </NotificationsDispatch.Provider>
   );
 }
 
