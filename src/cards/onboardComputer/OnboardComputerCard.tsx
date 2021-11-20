@@ -41,7 +41,11 @@ const addShutdownFailureNotification = () =>
     message: "Failed to send shut down request.",
   });
 
-const OnboardComputerCard: React.FunctionComponent = (_props) => {
+type Props = {
+  isConnected: boolean;
+};
+
+const OnboardComputerCard: React.FunctionComponent<Props> = (props) => {
   const dispatchNotifications = useContext(NotificationsDispatch);
   const onShutDownClick = useCallback(
     () =>
@@ -58,7 +62,11 @@ const OnboardComputerCard: React.FunctionComponent = (_props) => {
       <Card.Body>
         <Card.Text>Control the onboard Raspberry Pi computer.</Card.Text>
         <div className="d-grid gap-2">
-          <Button variant="danger" onClick={onShutDownClick}>
+          <Button
+            variant="danger"
+            onClick={onShutDownClick}
+            disabled={!props.isConnected}
+          >
             Shut down
           </Button>
         </div>

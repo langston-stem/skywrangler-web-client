@@ -4,10 +4,16 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import UAVStatus from "./observables/UAVStatus";
+import { status } from "./observables/uav-status";
+
+const statusObservable = status();
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <UAVStatus.Provider value={statusObservable}>
+      <App />
+    </UAVStatus.Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );
