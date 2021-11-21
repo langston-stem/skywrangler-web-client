@@ -21,6 +21,8 @@
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],
 
+  "onCreateCommand": "sudo chmod 777 /workspaces",
+
   // Use 'postCreateCommand' to run commands after the container is created.
   "postCreateCommand": "yarn install",
 

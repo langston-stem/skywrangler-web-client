@@ -1,0 +1,13 @@
+#!/usr/bin/make -f
+
+%:
+	dh $@
+
+override_dh_auto_clean:
+	rm -rf build
+
+override_dh_auto_configure:
+	yarn install
+
+override_dh_auto_build:
+	yarn build

@@ -1,0 +1,2 @@
+build/ /usr/share/skywrangler-web-client/html/
+debian/etc/ /
