@@ -1,6 +1,5 @@
-skywrangler-web-client (1.0.0) UNRELEASED; urgency=low
+skywrangler-web-client (1.0.0) bullseye; urgency=low
 
-  * Initial release. Closes: #nnnn
-    <nnnn is the bug number of your ITP>
+  * Initial release
 
- --  <>  Sun, 21 Nov 2021 03:00:49 +0000
+ -- David Lechner <david@ablerobots.com>  Sun, 21 Nov 2021 04:57:39 +0000
