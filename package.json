@@ -44,7 +44,7 @@
       "prettier --write"
     ]
   },
-  "proxy": "http://0.0.0.0:8080",
+  "proxy": "http://skywrangler-web-server:8080",
   "browserslist": {
     "production": [
       ">0.2%",
