@@ -7,7 +7,9 @@ server {
 
 	# static files from react app
 	location / {
-		try_files $uri =404;
+		# First attempt to serve request as file, then
+		# as directory, then fall back to displaying a 404.
+		try_files $uri $uri/ =404;
 	}
 
 	# server running on python/aiohttp

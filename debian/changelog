@@ -1,3 +1,9 @@
+skywrangler-web-client (1.0.2) UNRELEASED; urgency=medium
+
+  * Fixed serving directories as index.html. 
+
+ -- David Lechner <david@ablerobots.com>  Mon, 22 Nov 2021 01:03:58 +0000
+
 skywrangler-web-client (1.0.1) bullseye; urgency=medium
 
   * Fixed build directory in html. 
