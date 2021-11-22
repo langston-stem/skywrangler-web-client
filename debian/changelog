@@ -1,8 +1,8 @@
-skywrangler-web-client (1.0.1) UNRELEASED; urgency=medium
+skywrangler-web-client (1.0.1) bullseye; urgency=medium
 
   * Fixed build directory in html. 
 
- -- David Lechner <david@ablerobots.com>  Mon, 22 Nov 2021 00:49:56 +0000
+ -- David Lechner <david@ablerobots.com>  Mon, 22 Nov 2021 00:51:53 +0000
 
 skywrangler-web-client (1.0.0) bullseye; urgency=low
 
