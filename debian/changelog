@@ -1,3 +1,9 @@
+skywrangler-web-client (1.0.3) UNRELEASED; urgency=medium
+
+  * Make skywrangler-web-server a required depedency. 
+
+ -- David Lechner <david@ablerobots.com>  Mon, 22 Nov 2021 04:20:22 +0000
+
 skywrangler-web-client (1.0.2) bullseye; urgency=medium
 
   * Fixed serving directories as index.html. 
