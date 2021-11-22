@@ -16,3 +16,4 @@ debsign ../${source}_${version}_${arch}.changes
 dput -c ${script_dir}/dput.cf skywrangler ../${source}_${version}_${arch}.changes
 ssh ablerobots@archive.ablerobots.com -C 'reprepro -b reprepro/skywrangler processincoming upload'
 gbp buildpackage --git-tag-only
+git push --tags
