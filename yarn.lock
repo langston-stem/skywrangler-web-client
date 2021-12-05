@@ -12924,6 +12924,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"reconnecting-eventsource@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "reconnecting-eventsource@npm:1.1.1"
+  checksum: ecee835122d0683bdeda860c0091fd82e61115042432c92a6353721d3094ea9e08a0673a89053225784995aa2c26d0a9ed9708733adcae35ec178dbf1858470c
+  languageName: node
+  linkType: hard
+
 "recursive-readdir@npm:2.2.2":
   version: 2.2.2
   resolution: "recursive-readdir@npm:2.2.2"
@@ -13889,6 +13896,7 @@ __metadata:
     react-bootstrap: ^2.0.2
     react-dom: ^17.0.2
     react-scripts: "patch:react-scripts@4.0.3#./react-scripts.diff"
+    reconnecting-eventsource: ^1.1.1
     rxjs: ^7.4.0
     typescript: ^4.1.2
     web-vitals: ^1.0.1

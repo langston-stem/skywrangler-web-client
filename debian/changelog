@@ -1,3 +1,9 @@
+skywrangler-web-client (1.0.4) UNRELEASED; urgency=medium
+
+  * Use SSE instead of polling status.
+
+ -- David Lechner <david@ablerobots.com>  Sun, 05 Dec 2021 19:41:34 +0000
+
 skywrangler-web-client (1.0.3) bullseye; urgency=medium
 
   * Make skywrangler-web-server a required depedency. 

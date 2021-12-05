@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useReducer, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -6,8 +6,8 @@ import Notifications from "./notifications/Notifications";
 import notificationsReducer from "./notifications/reducer";
 import NotificationsDispatch from "./notifications/NotificationsDispatch";
 import OnboardComputerCard from "./cards/onboardComputer/OnboardComputerCard";
-import { statusOk } from "./observables/uav-status";
-import UAVStatus from "./observables/UAVStatus";
+import { fromEvent, Unsubscribable } from "rxjs";
+import ReconnectingEventSource from "reconnecting-eventsource";
 
 function App() {
   const [notificationsState, dispatchNotifications] = useReducer(
@@ -15,14 +15,30 @@ function App() {
     []
   );
 
-  const statusObservable = useContext(UAVStatus);
   const [connectionOk, setConnectionOk] = useState(false);
   useEffect(() => {
-    const sub = statusObservable.pipe(statusOk()).subscribe({
-      next: (value) => setConnectionOk(value),
-    });
-    return () => sub.unsubscribe();
-  }, [statusObservable, setConnectionOk]);
+    const eventSource = new ReconnectingEventSource("/api/status");
+    const subscriptions = new Array<Unsubscribable>();
+    subscriptions.push(
+      fromEvent(eventSource, "open").subscribe({
+        next: (ev) => setConnectionOk(true),
+      })
+    );
+    subscriptions.push(
+      fromEvent(eventSource, "error").subscribe({
+        next: (ev) => setConnectionOk(false),
+      })
+    );
+    subscriptions.push(
+      fromEvent(eventSource, "heartbeat").subscribe({
+        next: (ev) => console.info(ev),
+      })
+    );
+    return () => {
+      subscriptions.forEach((s) => s.unsubscribe());
+      eventSource.close();
+    };
+  }, [setConnectionOk]);
 
   return (
     <NotificationsDispatch.Provider value={dispatchNotifications}>
