@@ -12745,9 +12745,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-scripts@patch:react-scripts@4.0.3#./react-scripts.diff::locator=skywrangler-web-client%40workspace%3A.":
+"react-scripts@patch:react-scripts@4.0.3#./patches/react-scripts.diff::locator=skywrangler-web-client%40workspace%3A.":
   version: 4.0.3
-  resolution: "react-scripts@patch:react-scripts@npm%3A4.0.3#./react-scripts.diff::version=4.0.3&hash=73a6ec&locator=skywrangler-web-client%40workspace%3A."
+  resolution: "react-scripts@patch:react-scripts@npm%3A4.0.3#./patches/react-scripts.diff::version=4.0.3&hash=73a6ec&locator=skywrangler-web-client%40workspace%3A."
   dependencies:
     "@babel/core": 7.12.3
     "@pmmmwh/react-refresh-webpack-plugin": 0.4.3
@@ -13910,7 +13910,7 @@ __metadata:
     react: ^17.0.2
     react-bootstrap: ^2.0.2
     react-dom: ^17.0.2
-    react-scripts: "patch:react-scripts@4.0.3#./react-scripts.diff"
+    react-scripts: "patch:react-scripts@4.0.3#./patches/react-scripts.diff"
     reconnecting-eventsource: ^1.1.1
     rxjs: ^7.4.0
     typescript: ^4.1.2
