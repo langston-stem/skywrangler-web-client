@@ -6671,6 +6671,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"eventsourcemock@npm:2.0.0":
+  version: 2.0.0
+  resolution: "eventsourcemock@npm:2.0.0"
+  checksum: e8de1235307a2a7c958657de1d0f1fa34d3f9c0e494b6880a2b25b1096b9fa32439a667eee611ffda008ca7d8ee7ca1d83a9b12eeb9c4fa264db7554117fd49f
+  languageName: node
+  linkType: hard
+
+"eventsourcemock@patch:eventsourcemock@2.0.0#./patches/eventsourcemock.diff::locator=skywrangler-web-client%40workspace%3A.":
+  version: 2.0.0
+  resolution: "eventsourcemock@patch:eventsourcemock@npm%3A2.0.0#./patches/eventsourcemock.diff::version=2.0.0&hash=7d931c&locator=skywrangler-web-client%40workspace%3A."
+  checksum: 13759440084b23f5008c7484718999f699cc3767cb4a5a994a603c861ee1f4a2c440dda447088ad64e5ef7ec1cdf0a6d278f74a5c9b2ccb1fc66acf3198052dc
+  languageName: node
+  linkType: hard
+
 "evp_bytestokey@npm:^1.0.0, evp_bytestokey@npm:^1.0.3":
   version: 1.0.3
   resolution: "evp_bytestokey@npm:1.0.3"
@@ -13889,6 +13903,7 @@ __metadata:
     "@types/react": ^17.0.0
     "@types/react-dom": ^17.0.0
     bootstrap: 5.1.3
+    eventsourcemock: "patch:eventsourcemock@2.0.0#./patches/eventsourcemock.diff"
     husky: ^7.0.4
     lint-staged: ^12.0.0
     prettier: ^2.4.1

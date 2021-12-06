@@ -1,0 +1,13 @@
+diff --git a/lib/EventSource.js b/lib/EventSource.js
+index 48a10bc7c81c553e4adc801d449f0d355c4c60d4..305e6807bbbc2c47b28cb55edcf4075538921354 100644
+--- a/lib/EventSource.js
++++ b/lib/EventSource.js
+@@ -23,7 +23,7 @@ var sources = exports.sources = {};
+ 
+ var EventSource = function () {
+   function EventSource(url) {
+-    var configuration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : defaultOptions;
++    var configuration = arguments.length > 1 && arguments[1] !== undefined && arguments[1] !== null ? arguments[1] : defaultOptions;
+ 
+     _classCallCheck(this, EventSource);
+ 
