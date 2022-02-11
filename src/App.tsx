@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import OnboardComputerCard from "./cards/onboardComputer/OnboardComputerCard";
 import { fromEvent, Unsubscribable } from "rxjs";
 import ReconnectingEventSource from "reconnecting-eventsource";
-import { ChakraProvider } from "@chakra-ui/react";
+import {
+  ChakraProvider,
+  theme,
+  Box,
+  Grid,
+  VStack,
+  Heading,
+} from "@chakra-ui/react";
 
 function App() {
   const [connectionOk, setConnectionOk] = useState(false);
@@ -35,19 +39,15 @@ function App() {
   }, [setConnectionOk]);
 
   return (
-    <ChakraProvider>
-      <Container fluid>
-        <Row>
-          <Col>
-            <h1>Sky Wrangler UAV</h1>
-          </Col>
-        </Row>
-        <Row sm={2} lg={3} xxl={4}>
-          <Col>
+    <ChakraProvider theme={theme}>
+      <Box textAlign="center">
+        <Grid minH="100vh" p={3}>
+          <VStack spacing={8}>
+            <Heading>Sky Wrangler UAV</Heading>
             <OnboardComputerCard isConnected={connectionOk} />
-          </Col>
-        </Row>
-      </Container>
+          </VStack>
+        </Grid>
+      </Box>
     </ChakraProvider>
   );
 }
