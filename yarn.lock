@@ -8244,9 +8244,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eventsourcemock@patch:eventsourcemock@2.0.0#./patches/eventsourcemock.diff::locator=skywrangler-web-client%40workspace%3A.":
+"eventsourcemock@patch:eventsourcemock@npm:2.0.0#.yarn/patches/eventsourcemock-npm-2.0.0-a60eea7461::locator=skywrangler-web-client%40workspace%3A.":
   version: 2.0.0
-  resolution: "eventsourcemock@patch:eventsourcemock@npm%3A2.0.0#./patches/eventsourcemock.diff::version=2.0.0&hash=7d931c&locator=skywrangler-web-client%40workspace%3A."
+  resolution: "eventsourcemock@patch:eventsourcemock@npm%3A2.0.0#.yarn/patches/eventsourcemock-npm-2.0.0-a60eea7461::version=2.0.0&hash=7d931c&locator=skywrangler-web-client%40workspace%3A."
   checksum: 13759440084b23f5008c7484718999f699cc3767cb4a5a994a603c861ee1f4a2c440dda447088ad64e5ef7ec1cdf0a6d278f74a5c9b2ccb1fc66acf3198052dc
   languageName: node
   linkType: hard
@@ -14189,7 +14189,7 @@ __metadata:
     "@types/react": ^17.0.0
     "@types/react-dom": ^17.0.0
     bootstrap: 5.1.3
-    eventsourcemock: "patch:eventsourcemock@2.0.0#./patches/eventsourcemock.diff"
+    eventsourcemock: 2.0.0
     framer-motion: ^6
     husky: ^7.0.4
     lint-staged: ^12.0.0
