@@ -1,7 +1,12 @@
-import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
 import { useCallback } from "react";
-import { useToast, UseToastOptions } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Text,
+  useToast,
+  UseToastOptions,
+  VStack,
+} from "@chakra-ui/react";
 
 const handleShutDownClick = () =>
   new Promise<void>(async (resolve, reject) => {
@@ -52,21 +57,24 @@ const OnboardComputerCard: React.FunctionComponent<Props> = (props) => {
   );
 
   return (
-    <Card>
-      <Card.Header>Onboard Computer</Card.Header>
-      <Card.Body>
-        <Card.Text>Control the onboard Raspberry Pi computer.</Card.Text>
-        <div className="d-grid gap-2">
+    <Box maxW="sm" borderWidth="2px" borderRadius="lg" overflow="hidden">
+      <Box bg="gray.200" p="2">
+        <Text>Onboard Computer</Text>
+      </Box>
+      <Box p="6">
+        <VStack>
+          <Text>Control the onboard Raspberry Pi computer.</Text>
           <Button
-            variant="danger"
+            isFullWidth={true}
+            colorScheme="red"
             onClick={onShutDownClick}
             disabled={!props.isConnected}
           >
             Shut down
           </Button>
-        </div>
-      </Card.Body>
-    </Card>
+        </VStack>
+      </Box>
+    </Box>
   );
 };
 
