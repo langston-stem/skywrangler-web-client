@@ -1,21 +1,15 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Notifications from "./notifications/Notifications";
-import notificationsReducer from "./notifications/reducer";
-import NotificationsDispatch from "./notifications/NotificationsDispatch";
 import OnboardComputerCard from "./cards/onboardComputer/OnboardComputerCard";
 import { fromEvent, Unsubscribable } from "rxjs";
 import ReconnectingEventSource from "reconnecting-eventsource";
+import { ChakraProvider } from "@chakra-ui/react";
 
 function App() {
-  const [notificationsState, dispatchNotifications] = useReducer(
-    notificationsReducer,
-    []
-  );
-
   const [connectionOk, setConnectionOk] = useState(false);
+
   useEffect(() => {
     const eventSource = new ReconnectingEventSource("/api/status");
     const subscriptions = new Array<Unsubscribable>();
@@ -41,7 +35,7 @@ function App() {
   }, [setConnectionOk]);
 
   return (
-    <NotificationsDispatch.Provider value={dispatchNotifications}>
+    <ChakraProvider>
       <Container fluid>
         <Row>
           <Col>
@@ -54,8 +48,7 @@ function App() {
           </Col>
         </Row>
       </Container>
-      <Notifications state={notificationsState} />
-    </NotificationsDispatch.Provider>
+    </ChakraProvider>
   );
 }
 
