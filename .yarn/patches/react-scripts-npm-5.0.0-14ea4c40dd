@@ -1,0 +1,13 @@
+diff --git a/config/webpackDevServer.config.js b/config/webpackDevServer.config.js
+index 522a81b9b2b2723822513390a9d7e0fc38f75066..6d705e242fdceb44f0c23681d4c94f45aea33b7a 100644
+--- a/config/webpackDevServer.config.js
++++ b/config/webpackDevServer.config.js
+@@ -50,7 +50,7 @@ module.exports = function (proxy, allowedHost) {
+       'Access-Control-Allow-Headers': '*',
+     },
+     // Enable gzip compression of generated files.
+-    compress: true,
++    compress: false,
+     static: {
+       // By default WebpackDevServer serves physical files from current directory
+       // in addition to all the virtual build products that it serves from memory.
