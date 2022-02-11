@@ -34,6 +34,12 @@
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],
 
+  "runArgs": [
+    "--network=skywrangler-web"
+  ],
+
+  "initializeCommand": "docker network create skywrangler-web || true",
+
   "onCreateCommand": "sudo chmod 777 /workspaces",
 
   // Use 'postCreateCommand' to run commands after the container is created.
