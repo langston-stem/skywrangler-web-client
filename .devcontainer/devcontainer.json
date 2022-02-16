@@ -38,7 +38,7 @@
     "--network=skywrangler-web"
   ],
 
-  "initializeCommand": "docker network create skywrangler-web || true",
+  "initializeCommand": "docker network create skywrangler-web || exit 0",
 
   "onCreateCommand": "sudo chmod 777 /workspaces",
 
