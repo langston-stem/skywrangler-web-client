@@ -1,3 +1,21 @@
+# skywrangler-web-client
+
+Front-end for SkyWrangler web app.
+
+## Development
+
+### First time setup
+
+Prerequistes:
+- Docker
+- VS Code
+
+#### Set up docker network
+
+    docker network create skywrangler-web
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
