@@ -1,14 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
-import {
-  Box,
-  Button,
-  Text,
-  useToast,
-  UseToastOptions,
-  VStack,
-} from "@chakra-ui/react";
+import { Box, Text, useToast, UseToastOptions, VStack } from "@chakra-ui/react";
 import ReconnectingEventSource from "reconnecting-eventsource";
 import { fromEvent, Unsubscribable } from "rxjs";
+import SwipeButton from "../SwipeButton";
 
 const handleFlyMissionClick = () =>
   new Promise<void>(async (resolve, reject) => {
@@ -196,29 +190,25 @@ const DroneCard: React.VoidFunctionComponent = () => {
           {isConnected && !isAccelCalOk && <Text>Check accelerometer.</Text>}
           {isConnected && !isMagCalOk && <Text>Check compass.</Text>}
           {!isInAir && (
-            <Button
-              isFullWidth={true}
+            <SwipeButton
+              label="Launch"
               colorScheme="green"
-              onClick={handleLaunchButtonClick}
               disabled={
                 !isConnectionOk ||
                 !isConnected ||
                 !isHealthAllOk ||
                 isMissionInProgress
               }
-            >
-              Launch
-            </Button>
+              onClick={handleLaunchButtonClick}
+            />
           )}
           {isInAir && (
-            <Button
-              isFullWidth={true}
+            <SwipeButton
+              label="Return"
               colorScheme="yellow"
-              onClick={handleReturnButtonClick}
               disabled={!isConnectionOk || !isConnected || isReturnInProgress}
-            >
-              Return
-            </Button>
+              onClick={handleReturnButtonClick}
+            />
           )}
         </VStack>
       </Box>
