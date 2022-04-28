@@ -181,7 +181,14 @@ const DroneCard: React.VoidFunctionComponent = () => {
       {isConnected && !isGyroCalOk && <Text>Check gyro.</Text>}
       {isConnected && !isAccelCalOk && <Text>Check accelerometer.</Text>}
       {isConnected && !isMagCalOk && <Text>Check compass.</Text>}
-      {!isInAir && (
+      {isInAir ? (
+        <SwipeButton
+          label="Return"
+          colorScheme="yellow"
+          disabled={!isConnectionOk || !isConnected || isReturnInProgress}
+          onClick={handleReturnButtonClick}
+        />
+      ) : (
         <SwipeButton
           label="Launch"
           colorScheme="green"
@@ -192,14 +199,6 @@ const DroneCard: React.VoidFunctionComponent = () => {
             isMissionInProgress
           }
           onClick={handleLaunchButtonClick}
-        />
-      )}
-      {isInAir && (
-        <SwipeButton
-          label="Return"
-          colorScheme="yellow"
-          disabled={!isConnectionOk || !isConnected || isReturnInProgress}
-          onClick={handleReturnButtonClick}
         />
       )}
     </Card>
