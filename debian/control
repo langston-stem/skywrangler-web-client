@@ -8,7 +8,7 @@ Homepage: <https://github.com/dlech/skywrangler-web-client>
 
 Package: skywrangler-web-client
 Architecture: all
-Depends: skywrangler-web-server, ${misc:Depends}
+Depends: skywrangler-web-server (>= 1.4.0), ${misc:Depends}
 Recommends: nginx
 Description: Sky Wrangler web client
  Client-side static web files for Sky Wrangler onboard computer.
