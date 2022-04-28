@@ -10,6 +10,7 @@ import {
   VStack,
   Heading,
 } from "@chakra-ui/react";
+import DroneCard from "./cards/drone/DroneCard";
 
 function App() {
   const [connectionOk, setConnectionOk] = useState(false);
@@ -29,7 +30,7 @@ function App() {
     );
     subscriptions.push(
       fromEvent(eventSource, "heartbeat").subscribe({
-        next: (ev) => console.info(ev),
+        next: (ev) => console.debug(ev),
       })
     );
     return () => {
@@ -44,6 +45,7 @@ function App() {
         <Grid minH="100vh" p={3}>
           <VStack spacing={8}>
             <Heading>Sky Wrangler UAV</Heading>
+            <DroneCard />
             <OnboardComputerCard isConnected={connectionOk} />
           </VStack>
         </Grid>

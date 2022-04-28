@@ -57,13 +57,18 @@ const OnboardComputerCard: React.FunctionComponent<Props> = (props) => {
   );
 
   return (
-    <Box maxW="sm" borderWidth="2px" borderRadius="lg" overflow="hidden">
+    <Box
+      maxW="sm"
+      minW="sm"
+      borderWidth="2px"
+      borderRadius="lg"
+      overflow="hidden"
+    >
       <Box bg="gray.200" p="2">
-        <Text>Onboard Computer</Text>
+        <Text>Raspberry Pi</Text>
       </Box>
       <Box p="6">
         <VStack>
-          <Text>Control the onboard Raspberry Pi computer.</Text>
           <Button
             isFullWidth={true}
             colorScheme="red"
