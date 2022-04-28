@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
-import { Box, Text, useToast, UseToastOptions, VStack } from "@chakra-ui/react";
+import { Text, useToast, UseToastOptions } from "@chakra-ui/react";
 import ReconnectingEventSource from "reconnecting-eventsource";
 import { fromEvent, Unsubscribable } from "rxjs";
 import SwipeButton from "../SwipeButton";
+import Card from "../Card";
 
 const handleFlyMissionClick = () =>
   new Promise<void>(async (resolve, reject) => {
@@ -171,48 +172,35 @@ const DroneCard: React.VoidFunctionComponent = () => {
   }, [setIsReturnInProgress, toast]);
 
   return (
-    <Box
-      maxW="sm"
-      minW="sm"
-      borderWidth="2px"
-      borderRadius="lg"
-      overflow="hidden"
-    >
-      <Box bg="gray.200" p="2">
-        <Text>Drone</Text>
-      </Box>
-      <Box p="6">
-        <VStack>
-          {statusText && <Text>{statusText}</Text>}
-          {!isConnected && <Text>Disconnected.</Text>}
-          {isConnected && !isGpsOk && <Text>Check GPS.</Text>}
-          {isConnected && !isGyroCalOk && <Text>Check gyro.</Text>}
-          {isConnected && !isAccelCalOk && <Text>Check accelerometer.</Text>}
-          {isConnected && !isMagCalOk && <Text>Check compass.</Text>}
-          {!isInAir && (
-            <SwipeButton
-              label="Launch"
-              colorScheme="green"
-              disabled={
-                !isConnectionOk ||
-                !isConnected ||
-                !isHealthAllOk ||
-                isMissionInProgress
-              }
-              onClick={handleLaunchButtonClick}
-            />
-          )}
-          {isInAir && (
-            <SwipeButton
-              label="Return"
-              colorScheme="yellow"
-              disabled={!isConnectionOk || !isConnected || isReturnInProgress}
-              onClick={handleReturnButtonClick}
-            />
-          )}
-        </VStack>
-      </Box>
-    </Box>
+    <Card title="Drone">
+      {statusText && <Text>{statusText}</Text>}
+      {!isConnected && <Text>Disconnected.</Text>}
+      {isConnected && !isGpsOk && <Text>Check GPS.</Text>}
+      {isConnected && !isGyroCalOk && <Text>Check gyro.</Text>}
+      {isConnected && !isAccelCalOk && <Text>Check accelerometer.</Text>}
+      {isConnected && !isMagCalOk && <Text>Check compass.</Text>}
+      {!isInAir && (
+        <SwipeButton
+          label="Launch"
+          colorScheme="green"
+          disabled={
+            !isConnectionOk ||
+            !isConnected ||
+            !isHealthAllOk ||
+            isMissionInProgress
+          }
+          onClick={handleLaunchButtonClick}
+        />
+      )}
+      {isInAir && (
+        <SwipeButton
+          label="Return"
+          colorScheme="yellow"
+          disabled={!isConnectionOk || !isConnected || isReturnInProgress}
+          onClick={handleReturnButtonClick}
+        />
+      )}
+    </Card>
   );
 };
 

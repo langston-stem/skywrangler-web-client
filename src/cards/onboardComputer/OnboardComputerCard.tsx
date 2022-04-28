@@ -1,6 +1,7 @@
 import { useCallback } from "react";
-import { Box, Text, useToast, UseToastOptions, VStack } from "@chakra-ui/react";
+import { useToast, UseToastOptions } from "@chakra-ui/react";
 import SwipeButton from "../SwipeButton";
+import Card from "../Card";
 
 const handleShutDownClick = () =>
   new Promise<void>(async (resolve, reject) => {
@@ -51,27 +52,14 @@ const OnboardComputerCard: React.FunctionComponent<Props> = (props) => {
   );
 
   return (
-    <Box
-      maxW="sm"
-      minW="sm"
-      borderWidth="2px"
-      borderRadius="lg"
-      overflow="hidden"
-    >
-      <Box bg="gray.200" p="2">
-        <Text>Raspberry Pi</Text>
-      </Box>
-      <Box p="6">
-        <VStack>
-          <SwipeButton
-            label="Shut down"
-            colorScheme="red"
-            onClick={onShutDownClick}
-            disabled={!props.isConnected}
-          />
-        </VStack>
-      </Box>
-    </Box>
+    <Card title="Raspberry Pi">
+      <SwipeButton
+        label="Shut down"
+        colorScheme="red"
+        onClick={onShutDownClick}
+        disabled={!props.isConnected}
+      />
+    </Card>
   );
 };
 
