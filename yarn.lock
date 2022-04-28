@@ -14018,6 +14018,7 @@ __metadata:
     reconnecting-eventsource: ^1.1.1
     rxjs: ^7.4.0
     typescript: ^4.1.2
+    usehooks-ts: ^2.5.1
     web-vitals: ^1.0.1
   languageName: unknown
   linkType: soft
@@ -15240,6 +15241,15 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0
   checksum: 9207ad8af787f4005b55813dd34ab392c06c5c86971182068f74f4aca5781c067085813167d438d460a84289d67dc915d04f2309dfc016172423c65bfd22bb3e
+  languageName: node
+  linkType: hard
+
+"usehooks-ts@npm:^2.5.1":
+  version: 2.5.1
+  resolution: "usehooks-ts@npm:2.5.1"
+  peerDependencies:
+    react: ">=16.8.0"
+  checksum: ed68dad0fab3982482c9072c058f69244a75552e5368e6ceb1e98083c643727fe639463dfc99da61e48e0dd68519a37acbc83f277b103e231c282c46b229ed1d
   languageName: node
   linkType: hard
 
