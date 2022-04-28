@@ -70,17 +70,19 @@ const DroneCard: React.VoidFunctionComponent = () => {
   const [isConnectionOk, setIsConnectionOk] = useState(false);
   const [isConnected, setIsConnected] = useState(false);
   const [isHealthAllOk, setIsHealthAllOk] = useState(false);
-  const [isAccelCalOk, setIsAccelCalOk] = useState(false);
   const [, setIsArmable] = useState(false);
-  const [isGpsOk, setIsGpsOk] = useState(false);
-  const [isGyroCalOk, setIsGyroCalOk] = useState(false);
   const [, setIsHomePositionOk] = useState(false);
   const [, setIsLocalPositionOk] = useState(false);
-  const [isMagCalOk, setIsMagCalOk] = useState(false);
   const [isInAir, setIsInAir] = useState(false);
   const [statusText, setStatusText] = useState("");
   const [isMissionInProgress, setIsMissionInProgress] = useState(false);
   const [isReturnInProgress, setIsReturnInProgress] = useState(false);
+
+  // the state for these defaults to true to avoid spurious messages on page load
+  const [isAccelCalOk, setIsAccelCalOk] = useState(true);
+  const [isGpsOk, setIsGpsOk] = useState(true);
+  const [isGyroCalOk, setIsGyroCalOk] = useState(true);
+  const [isMagCalOk, setIsMagCalOk] = useState(true);
 
   useEffect(() => {
     const eventSource = new ReconnectingEventSource("/api/drone/status");
