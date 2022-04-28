@@ -175,7 +175,7 @@ const DroneCard: React.VoidFunctionComponent = () => {
 
   return (
     <Card title="Drone">
-      {statusText && <Text>{statusText}</Text>}
+      {isConnected && statusText && <Text>{statusText}</Text>}
       {!isConnected && <Text>Disconnected.</Text>}
       {isConnected && !isGpsOk && <Text>Check GPS.</Text>}
       {isConnected && !isGyroCalOk && <Text>Check gyro.</Text>}
