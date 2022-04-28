@@ -50,6 +50,8 @@
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],
 
+  "otherPortsAttributes": {"onAutoForward": "silent"},
+
   "runArgs": ["--network=skywrangler-web"],
 
   // https://code.visualstudio.com/remote/advancedcontainers/improve-performance
