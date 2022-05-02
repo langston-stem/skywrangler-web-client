@@ -9,8 +9,8 @@ type CardProps = {
 const Card: React.FunctionComponent<CardProps> = ({ title, children }) => {
   return (
     <Box
-      maxW="sm"
-      minW="sm"
+      maxW="xs"
+      minW="xs"
       borderWidth="2px"
       borderRadius="lg"
       overflow="hidden"
