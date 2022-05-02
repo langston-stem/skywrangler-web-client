@@ -1,3 +1,11 @@
+skywrangler-web-client (1.2.1) bullseye; urgency=medium
+
+  * Card: change width to "xs"
+  * DroneCard: add message about waiting for GPS OK
+  * DroneCard: fix isConnected state
+
+ -- David Lechner <david@ablerobots.com>  Mon, 02 May 2022 16:52:25 +0000
+
 skywrangler-web-client (1.2.0) bullseye; urgency=medium
 
   * cards: add Drone card
