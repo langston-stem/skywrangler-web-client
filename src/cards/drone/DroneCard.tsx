@@ -112,6 +112,9 @@ const DroneCard: React.VoidFunctionComponent = () => {
               break;
             case "is_health_all_ok":
               setIsHealthAllOk(data);
+              // it is possible to miss "is_connected": true, so if we are
+              // receiving other messages, we must be connected
+              setIsConnected(true);
               break;
             case "health":
               setIsAccelCalOk(data.is_accelerometer_calibration_ok);
