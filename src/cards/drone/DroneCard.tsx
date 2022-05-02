@@ -71,8 +71,8 @@ const DroneCard: React.VoidFunctionComponent = () => {
   const [isConnected, setIsConnected] = useState(false);
   const [isHealthAllOk, setIsHealthAllOk] = useState(false);
   const [, setIsArmable] = useState(false);
-  const [, setIsHomePositionOk] = useState(false);
-  const [, setIsLocalPositionOk] = useState(false);
+  const [isHomePositionOk, setIsHomePositionOk] = useState(false);
+  const [isLocalPositionOk, setIsLocalPositionOk] = useState(false);
   const [isInAir, setIsInAir] = useState(false);
   const [statusText, setStatusText] = useState("");
   const [isMissionInProgress, setIsMissionInProgress] = useState(false);
@@ -177,6 +177,9 @@ const DroneCard: React.VoidFunctionComponent = () => {
     <Card title="Drone">
       {isConnected && statusText && <Text>{statusText}</Text>}
       {!isConnected && <Text>Disconnected.</Text>}
+      {isConnected && (!isHomePositionOk || !isLocalPositionOk) && (
+        <Text>Waiting for GPS position OK.</Text>
+      )}
       {isConnected && !isGpsOk && <Text>Check GPS.</Text>}
       {isConnected && !isGyroCalOk && <Text>Check gyro.</Text>}
       {isConnected && !isAccelCalOk && <Text>Check accelerometer.</Text>}
