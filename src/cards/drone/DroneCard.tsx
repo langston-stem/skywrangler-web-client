@@ -4,6 +4,7 @@ import ReconnectingEventSource from "reconnecting-eventsource";
 import { fromEvent, Unsubscribable } from "rxjs";
 import SwipeButton from "../SwipeButton";
 import Card from "../Card";
+import { map, distinctUntilChanged } from "rxjs";
 
 const handleFlyMissionClick = () =>
   new Promise<void>(async (resolve, reject) => {
@@ -65,6 +66,35 @@ const returnFailureNotification: UseToastOptions = {
   description: "Return failed.",
 };
 
+/**
+ * Subscribes to an event from an EventSource.
+ *
+ * Duplicate events are ignored.
+ *
+ * @param eventSource The event source.
+ * @param eventName The name of the event.
+ * @param callback The callback called when the event occurs.
+ * @returns An unsubscribe callback.
+ */
+function subscribeStatus<T>(
+  eventSource: ReconnectingEventSource,
+  eventName: string,
+  callback: (data: T) => void
+): Unsubscribable {
+  return fromEvent<MessageEvent<string>>(eventSource, eventName)
+    .pipe(
+      map((e) => e.data),
+      // distict test has to be performed on string, if we parse JSON first,
+      // objects will always be new objects
+      distinctUntilChanged(),
+      map((d) => JSON.parse(d))
+    )
+    .subscribe({ next: callback });
+}
+
+/** Prefix for console log messages */
+const DRONE_STATUS = "drone status:";
+
 const DroneCard: React.VoidFunctionComponent = () => {
   const toast = useToast({ position: "top", isClosable: true });
   const [isConnectionOk, setIsConnectionOk] = useState(false);
@@ -90,51 +120,66 @@ const DroneCard: React.VoidFunctionComponent = () => {
 
     subscriptions.push(
       fromEvent(eventSource, "open").subscribe({
-        next: (ev) => setIsConnectionOk(true),
+        next: () => setIsConnectionOk(true),
       })
     );
 
     subscriptions.push(
       fromEvent(eventSource, "error").subscribe({
-        next: (ev) => setIsConnectionOk(false),
+        next: () => setIsConnectionOk(false),
       })
     );
 
     subscriptions.push(
-      fromEvent<MessageEvent<string>>(eventSource, "message").subscribe({
-        next: (ev) => {
-          console.debug(ev);
-          const data = JSON.parse(ev.data);
-
-          switch (ev.lastEventId) {
-            case "is_connected":
-              setIsConnected(data);
-              break;
-            case "is_health_all_ok":
-              setIsHealthAllOk(data);
-              // it is possible to miss "is_connected": true, so if we are
-              // receiving other messages, we must be connected
-              setIsConnected(true);
-              break;
-            case "health":
-              setIsAccelCalOk(data.is_accelerometer_calibration_ok);
-              setIsArmable(data.is_armable);
-              setIsGpsOk(data.is_global_position_ok);
-              setIsGyroCalOk(data.is_gyrometer_calibration_ok);
-              setIsHomePositionOk(data.is_home_position_ok);
-              setIsLocalPositionOk(data.is_local_position_ok);
-              setIsMagCalOk(data.is_magnetometer_calibration_ok);
-              break;
-            case "is_in_air":
-              setIsInAir(data);
-              break;
-            case "status_text":
-              setStatusText(data);
-              break;
-          }
-        },
+      subscribeStatus<boolean>(eventSource, "isConnected", (data) => {
+        console.debug(DRONE_STATUS, "isConnected:", data);
+        setIsConnected(data);
       })
     );
+
+    subscriptions.push(
+      subscribeStatus<boolean>(eventSource, "isHealthAllOk", (data) => {
+        console.debug(DRONE_STATUS, "isHealthAllOk:", data);
+        setIsHealthAllOk(data);
+      })
+    );
+
+    subscriptions.push(
+      subscribeStatus<{
+        isAccelerometerCalibrationOk: boolean;
+        isArmable: boolean;
+        isGlobalPositionOk: boolean;
+        isGyrometerCalibrationOk: boolean;
+        isHomePositionOk: boolean;
+        isLocalPositionOk: boolean;
+        isMagnetometerCalibrationOk: boolean;
+      }>(eventSource, "health", (data) => {
+        console.debug(DRONE_STATUS, "health:", data);
+
+        setIsAccelCalOk(data.isAccelerometerCalibrationOk);
+        setIsArmable(data.isArmable);
+        setIsGpsOk(data.isGlobalPositionOk);
+        setIsGyroCalOk(data.isGyrometerCalibrationOk);
+        setIsHomePositionOk(data.isHomePositionOk);
+        setIsLocalPositionOk(data.isLocalPositionOk);
+        setIsMagCalOk(data.isMagnetometerCalibrationOk);
+      })
+    );
+
+    subscriptions.push(
+      subscribeStatus<boolean>(eventSource, "isInAir", (data) => {
+        console.debug(DRONE_STATUS, "isInAir:", data);
+        setIsInAir(data);
+      })
+    );
+
+    subscriptions.push(
+      subscribeStatus<string>(eventSource, "statusText", (data) => {
+        console.debug(DRONE_STATUS, "statusText:", data);
+        setStatusText(data);
+      })
+    );
+
     return () => {
       subscriptions.forEach((s) => s.unsubscribe());
       eventSource.close();
