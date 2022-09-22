@@ -1,4 +1,12 @@
-import { Button, ThemeTypings } from "@chakra-ui/react";
+import {
+  ThemeTypings,
+  Slider,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
+} from "@chakra-ui/react";
+import { useCallback, useState } from "react";
+import { BsArrowRightCircleFill } from "react-icons/bs";
 
 type SwipeButtonProps = {
   /** The label text to show on the button. */
@@ -20,16 +28,38 @@ const SwipeButton: React.VoidFunctionComponent<SwipeButtonProps> = ({
   disabled,
   onClick,
 }) => {
+  const [sliderValue, setslidervalue] = useState(0);
+
+  const handleEndChange = useCallback(
+    (value: number) => {
+      setslidervalue(0);
+      if (value > 90) {
+        onClick();
+      }
+    },
+    [setslidervalue, onClick]
+  );
+
   return (
-    // TODO: replace this with a Slider
-    <Button
-      isFullWidth={true}
-      colorScheme={colorScheme}
-      onClick={onClick}
-      disabled={disabled}
+    <Slider
+      isDisabled={disabled}
+      value={sliderValue}
+      onChange={setslidervalue}
+      onChangeEnd={handleEndChange}
+      pointerEvents="none"
     >
-      {label}
-    </Button>
+      <SliderTrack minH="7">
+        {`slide to ${label}`}
+
+        <SliderFilledTrack />
+      </SliderTrack>
+      <SliderThumb
+        color={colorScheme}
+        as={BsArrowRightCircleFill}
+        boxSize={8}
+        pointerEvents="auto"
+      />
+    </Slider>
   );
 };
 
