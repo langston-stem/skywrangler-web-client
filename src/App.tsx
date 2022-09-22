@@ -11,6 +11,7 @@ import {
   Heading,
 } from "@chakra-ui/react";
 import DroneCard from "./cards/drone/DroneCard";
+import Objective2Card from "./cards/objective2/Objective2Card";
 
 function App() {
   const [connectionOk, setConnectionOk] = useState(false);
@@ -45,6 +46,7 @@ function App() {
         <Grid minH="100vh" p={3}>
           <VStack spacing={8}>
             <Heading>Sky Wrangler UAV</Heading>
+            <Objective2Card />
             <DroneCard />
             <OnboardComputerCard isConnected={connectionOk} />
           </VStack>
