@@ -29,16 +29,16 @@ const SwipeButton: React.FunctionComponent<SwipeButtonProps> = ({
   disabled,
   onClick,
 }) => {
-  const [sliderValue, setslidervalue] = useState(0);
+  const [sliderValue, setSliderValue] = useState(0);
 
   const handleEndChange = useCallback(
     (value: number) => {
-      setslidervalue(0);
+      setSliderValue(0);
       if (value > 90) {
         onClick();
       }
     },
-    [setslidervalue, onClick]
+    [setSliderValue, onClick]
   );
 
   return (
@@ -46,7 +46,7 @@ const SwipeButton: React.FunctionComponent<SwipeButtonProps> = ({
       isDisabled={disabled}
       focusThumbOnChange={false}
       value={sliderValue}
-      onChange={setslidervalue}
+      onChange={setSliderValue}
       onChangeEnd={handleEndChange}
       pointerEvents="none"
     >
