@@ -4,6 +4,7 @@ import {
   SliderTrack,
   SliderFilledTrack,
   SliderThumb,
+  Box,
 } from "@chakra-ui/react";
 import { useCallback, useState } from "react";
 import { BsArrowRightCircleFill } from "react-icons/bs";
@@ -43,22 +44,19 @@ const SwipeButton: React.FunctionComponent<SwipeButtonProps> = ({
   return (
     <Slider
       isDisabled={disabled}
+      focusThumbOnChange={false}
       value={sliderValue}
       onChange={setslidervalue}
       onChangeEnd={handleEndChange}
       pointerEvents="none"
     >
       <SliderTrack minH="7">
-        {`slide to ${label}`}
-
-        <SliderFilledTrack />
+        slide to <strong>{label}</strong>
+        <SliderFilledTrack minH="7" />
       </SliderTrack>
-      <SliderThumb
-        color={colorScheme}
-        as={BsArrowRightCircleFill}
-        boxSize={8}
-        pointerEvents="auto"
-      />
+      <SliderThumb boxSize={8} pointerEvents="auto">
+        <Box boxSize={8} color={colorScheme} as={BsArrowRightCircleFill} />
+      </SliderThumb>
     </Slider>
   );
 };
