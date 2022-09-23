@@ -22,7 +22,7 @@ type SwipeButtonProps = {
 /**
  * A "button" that requires swiping to "click".
  */
-const SwipeButton: React.VoidFunctionComponent<SwipeButtonProps> = ({
+const SwipeButton: React.FunctionComponent<SwipeButtonProps> = ({
   label,
   colorScheme,
   disabled,

@@ -95,7 +95,7 @@ function subscribeStatus<T>(
 /** Prefix for console log messages */
 const DRONE_STATUS = "drone status:";
 
-const DroneCard: React.VoidFunctionComponent = () => {
+const DroneCard: React.FunctionComponent = () => {
   const toast = useToast({ position: "top", isClosable: true });
   const [isConnectionOk, setIsConnectionOk] = useState(false);
   const [isConnected, setIsConnected] = useState(false);

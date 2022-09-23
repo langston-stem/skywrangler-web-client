@@ -1,9 +1,10 @@
 import { Box, Text, VStack } from "@chakra-ui/react";
+import { PropsWithChildren } from "react";
 
-type CardProps = {
+type CardProps = PropsWithChildren<{
   /** The title displayed at the top of the card. */
   title: string;
-};
+}>;
 
 /** A "card" component for grouping related controls. */
 const Card: React.FunctionComponent<CardProps> = ({ title, children }) => {
