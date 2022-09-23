@@ -6,21 +6,8 @@ import {
   SliderFilledTrack,
   SliderThumb,
   SliderMark,
-  Center,
-  Stack,
-  Heading,
 } from "@chakra-ui/react";
-
-import {
-  ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
-  theme,
-} from "@chakra-ui/react";
+import { Box, Text, VStack } from "@chakra-ui/react";
 
 const Objective2Card: React.FunctionComponent = () => {
   const labelStyles = {
