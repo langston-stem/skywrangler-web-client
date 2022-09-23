@@ -20,7 +20,9 @@ const Card: React.FunctionComponent<CardProps> = ({ title, children }) => {
         <Text>{title}</Text>
       </Box>
       <Box p="6">
-        <VStack>{children}</VStack>
+        <VStack spacing={4} align="stretch">
+          {children}
+        </VStack>
       </Box>
     </Box>
   );
