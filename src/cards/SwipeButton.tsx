@@ -8,6 +8,7 @@ import {
 } from "@chakra-ui/react";
 import { useCallback, useState } from "react";
 import { BsArrowRightCircleFill } from "react-icons/bs";
+import { useEffectOnce, useIsFirstRender } from "usehooks-ts";
 
 type SwipeButtonProps = {
   /** The label text to show on the button. */
@@ -41,9 +42,18 @@ const SwipeButton: React.FunctionComponent<SwipeButtonProps> = ({
     [setSliderValue, onClick]
   );
 
+  // HACK: this works around chakra-ui bug
+  // https://github.com/chakra-ui/chakra-ui/issues/6750
+  const isFirstRender = useIsFirstRender();
+  const [, setSecondRender] = useState(false);
+
+  useEffectOnce(() => {
+    setSecondRender(true);
+  });
+
   return (
     <Slider
-      isDisabled={disabled}
+      isDisabled={!isFirstRender && disabled}
       focusThumbOnChange={false}
       value={sliderValue}
       onChange={setSliderValue}
