@@ -15,6 +15,7 @@
     "@types/react-dom": "^18.0.0",
     "eventsourcemock": "2.0.0",
     "framer-motion": "^6",
+    "http-proxy-middleware": "^2.0.6",
     "husky": "^7.0.4",
     "lint-staged": "^12.0.0",
     "prettier": "^2.7.1",
@@ -50,7 +51,6 @@
       "prettier --write"
     ]
   },
-  "proxy": "http://skywrangler-web-server:8080",
   "browserslist": {
     "production": [
       ">0.2%",
