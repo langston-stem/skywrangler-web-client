@@ -7,7 +7,7 @@ import {
   SliderThumb,
   SliderMark,
 } from "@chakra-ui/react";
-import { Box, Text, VStack } from "@chakra-ui/react";
+import { Text, VStack } from "@chakra-ui/react";
 
 const Objective2Card: React.FunctionComponent = () => {
   const labelStyles = {
@@ -32,7 +32,6 @@ const Objective2Card: React.FunctionComponent = () => {
             90°
           </SliderMark>
           <SliderTrack bg="red.100">
-            <Box position="relative" right={10} />
             <SliderFilledTrack bg="blue.500" />
           </SliderTrack>
           <SliderThumb boxSize={3} />
@@ -56,7 +55,6 @@ const Objective2Card: React.FunctionComponent = () => {
             30m
           </SliderMark>
           <SliderTrack bg="red.100">
-            <Box position="relative" right={10} />
             <SliderFilledTrack bg="blue.500" />
           </SliderTrack>
           <SliderThumb boxSize={3} />
@@ -77,7 +75,6 @@ const Objective2Card: React.FunctionComponent = () => {
             8m/s
           </SliderMark>
           <SliderTrack bg="red.100">
-            <Box position="relative" right={10} />
             <SliderFilledTrack bg="blue.500" />
           </SliderTrack>
           <SliderThumb boxSize={3} />
