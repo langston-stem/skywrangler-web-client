@@ -62,7 +62,7 @@ const Objective2Card: React.FunctionComponent = () => {
       </VStack>
       <VStack paddingBottom={4}>
         <Text fontSize={"small"} color="black">
-          Height:
+          Speed:
         </Text>
         <Slider defaultValue={2} min={2} max={8} step={3}>
           <SliderMark value={2} {...labelStyles}>
