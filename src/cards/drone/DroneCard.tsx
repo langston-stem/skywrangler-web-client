@@ -9,8 +9,24 @@ import { map, distinctUntilChanged } from "rxjs";
 const handleFlyMissionClick = () =>
   new Promise<void>(async (resolve, reject) => {
     try {
+      const data = {
+        origin: {
+          latitude: 37.4137157,
+          longitude: -121.996128,
+          elevation: -0.5,
+        },
+        parameters: {
+          speed: 5,
+          distance: 10,
+          angle: 90,
+        },
+      };
       const response = await fetch("/api/drone/fly_mission", {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
       });
       if (response.ok) {
         resolve();
