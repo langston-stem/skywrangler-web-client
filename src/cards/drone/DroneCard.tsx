@@ -5,20 +5,35 @@ import { fromEvent, Unsubscribable } from "rxjs";
 import SwipeButton from "../SwipeButton";
 import Card from "../Card";
 import { map, distinctUntilChanged } from "rxjs";
+import {
+  useAngle,
+  useDistance,
+  useElevation,
+  useLatitude,
+  useLongitude,
+  useSpeed,
+} from "../objective2/hooks";
 
-const handleFlyMissionClick = () =>
+const handleFlyMissionClick = (
+  latitude: number,
+  longitude: number,
+  elevation: number,
+  speed: number,
+  distance: number,
+  angle: number
+) =>
   new Promise<void>(async (resolve, reject) => {
     try {
       const data = {
         origin: {
-          latitude: 37.4137157,
-          longitude: -121.996128,
-          elevation: -0.5,
+          latitude,
+          longitude,
+          elevation,
         },
         parameters: {
-          speed: 5,
-          distance: 10,
-          angle: 90,
+          speed,
+          distance,
+          angle,
         },
       };
       const response = await fetch("/api/drone/fly_mission", {
@@ -215,16 +230,39 @@ const DroneCard: React.FunctionComponent = () => {
     setStatusText,
   ]);
 
+  const { latitude } = useLatitude();
+  const { elevation } = useElevation();
+  const { speed } = useSpeed();
+  const { distance } = useDistance();
+  const { angle } = useAngle();
+  const { longitude } = useLongitude();
+
   const handleLaunchButtonClick = useCallback(() => {
     setIsMissionInProgress(true);
 
-    handleFlyMissionClick()
+    handleFlyMissionClick(
+      latitude,
+      longitude,
+      elevation,
+      speed,
+      distance,
+      angle
+    )
       .then(
         () => toast(missionSuccessNotification),
         () => toast(missionFailureNotification)
       )
       .finally(() => setIsMissionInProgress(false));
-  }, [setIsMissionInProgress, toast]);
+  }, [
+    setIsMissionInProgress,
+    toast,
+    latitude,
+    longitude,
+    elevation,
+    speed,
+    distance,
+    angle,
+  ]);
 
   const handleReturnButtonClick = useCallback(() => {
     setIsReturnInProgress(true);
