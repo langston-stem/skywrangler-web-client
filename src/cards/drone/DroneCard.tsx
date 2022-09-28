@@ -289,7 +289,7 @@ const DroneCard: React.FunctionComponent = () => {
       {isInAir ? (
         <SwipeButton
           label="Return"
-          colorScheme="yellow"
+          colorScheme="orange"
           disabled={!isConnectionOk || !isConnected || isReturnInProgress}
           onClick={handleReturnButtonClick}
         />

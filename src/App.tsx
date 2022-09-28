@@ -12,6 +12,7 @@ import {
 } from "@chakra-ui/react";
 import DroneCard from "./cards/drone/DroneCard";
 import Objective2Card from "./cards/objective2/Objective2Card";
+import { ColorModeSwitcher } from "./ColorModeSwitcher";
 
 function App() {
   const [connectionOk, setConnectionOk] = useState(false);
@@ -44,6 +45,7 @@ function App() {
     <ChakraProvider theme={theme}>
       <Box textAlign="center">
         <Grid minH="100vh" p={3}>
+          <ColorModeSwitcher justifySelf="flex-end" />
           <VStack spacing={8}>
             <Heading>Sky Wrangler UAV</Heading>
             <Objective2Card />

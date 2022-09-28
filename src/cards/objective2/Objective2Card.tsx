@@ -1,12 +1,6 @@
 import Card from "../Card";
 import * as React from "react";
-import {
-  Slider,
-  SliderTrack,
-  SliderFilledTrack,
-  SliderThumb,
-  SliderMark,
-} from "@chakra-ui/react";
+import { Slider, SliderTrack, SliderThumb, SliderMark } from "@chakra-ui/react";
 import { Text, VStack } from "@chakra-ui/react";
 import { useAngle, useDistance, useSpeed } from "./hooks";
 import { useCallback } from "react";
@@ -42,6 +36,16 @@ function toDistance(value: number): number {
   }
   return 30;
 }
+
+const labelStyles = {
+  mt: "2",
+  ml: "-2.5",
+  fontSize: "sm",
+};
+
+const langstonBlue = "rgb(27,54,104)";
+const langstonOrange = "rgb(242,104,42)";
+
 const Objective2Card: React.FunctionComponent = () => {
   const { angle, setAngle } = useAngle();
   const { distance, setDistance } = useDistance();
@@ -55,25 +59,11 @@ const Objective2Card: React.FunctionComponent = () => {
     [setDistance]
   );
 
-  const labelStyles = {
-    mt: "2",
-    ml: "-2.5",
-    fontSize: "sm",
-  };
-
   return (
     <Card title="Objective 2">
       <VStack paddingBottom={4}>
-        <Text fontSize={"small"} color="black">
-          Angle:
-        </Text>
-        <Slider
-          value={angle}
-          onChange={setAngle}
-          min={30}
-          max={90}
-          step={30}
-        >
+        <Text fontSize={"small"}>Angle</Text>
+        <Slider value={angle} onChange={setAngle} min={30} max={90} step={30}>
           <SliderMark value={30} {...labelStyles}>
             30°
           </SliderMark>
@@ -83,16 +73,12 @@ const Objective2Card: React.FunctionComponent = () => {
           <SliderMark value={90} {...labelStyles}>
             90°
           </SliderMark>
-          <SliderTrack bg="red.100">
-            <SliderFilledTrack bg="blue.500" />
-          </SliderTrack>
-          <SliderThumb boxSize={3} />
+          <SliderTrack bg={langstonBlue} />
+          <SliderThumb boxSize={3} bg={langstonOrange} />
         </Slider>
       </VStack>
       <VStack paddingBottom={4}>
-        <Text fontSize={"small"} color="black">
-          Distance:
-        </Text>
+        <Text fontSize={"small"}> Distance </Text>
         <Slider
           value={distanceValue}
           onChange={setDistanceValue}
@@ -112,23 +98,13 @@ const Objective2Card: React.FunctionComponent = () => {
           <SliderMark value={3} {...labelStyles}>
             30m
           </SliderMark>
-          <SliderTrack bg="red.100">
-            <SliderFilledTrack bg="blue.500" />
-          </SliderTrack>
-          <SliderThumb boxSize={3} />
+          <SliderTrack bg={langstonBlue} />
+          <SliderThumb boxSize={3} bg={langstonOrange} />
         </Slider>
       </VStack>
       <VStack paddingBottom={4}>
-        <Text fontSize={"small"} color="black">
-          Speed:
-        </Text>
-        <Slider
-          value={speed}
-          onChange={setSpeed}
-          min={2}
-          max={8}
-          step={3}
-        >
+        <Text fontSize={"small"}>Speed</Text>
+        <Slider value={speed} onChange={setSpeed} min={2} max={8} step={3}>
           <SliderMark value={2} {...labelStyles}>
             2m/s
           </SliderMark>
@@ -138,10 +114,8 @@ const Objective2Card: React.FunctionComponent = () => {
           <SliderMark value={8} {...labelStyles}>
             8m/s
           </SliderMark>
-          <SliderTrack bg="red.100">
-            <SliderFilledTrack bg="blue.500" />
-          </SliderTrack>
-          <SliderThumb boxSize={3} />
+          <SliderTrack bg={langstonBlue} />
+          <SliderThumb boxSize={3} bg={langstonOrange} />
         </Slider>
       </VStack>
     </Card>

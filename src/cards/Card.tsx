@@ -1,4 +1,4 @@
-import { Box, Text, VStack } from "@chakra-ui/react";
+import { Box, Text, useColorModeValue, VStack } from "@chakra-ui/react";
 import { PropsWithChildren } from "react";
 
 type CardProps = PropsWithChildren<{
@@ -8,6 +8,8 @@ type CardProps = PropsWithChildren<{
 
 /** A "card" component for grouping related controls. */
 const Card: React.FunctionComponent<CardProps> = ({ title, children }) => {
+  const headerBg = useColorModeValue("gray.200", "gray.500");
+
   return (
     <Box
       maxW="xs"
@@ -16,7 +18,7 @@ const Card: React.FunctionComponent<CardProps> = ({ title, children }) => {
       borderRadius="lg"
       overflow="hidden"
     >
-      <Box bg="gray.200" p="2">
+      <Box bg={headerBg} p="2">
         <Text>{title}</Text>
       </Box>
       <Box p="6">
