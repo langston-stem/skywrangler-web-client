@@ -112,7 +112,7 @@ type StatusTextType =
 const statusTextMap: ReadonlyMap<StatusTextType, UseToastOptions["status"]> =
   new Map([
     ["DEBUG", undefined],
-    ["INFO", undefined],
+    ["INFO", "info"],
     ["NOTICE", "info"],
     ["WARNING", "warning"],
     ["ERROR", "error"],
@@ -231,9 +231,9 @@ const DroneCard: React.FunctionComponent = () => {
         eventSource,
         "statusText",
         (data) => {
-          console.debug(DRONE_STATUS, "statusText:", data);
+          console.log(DRONE_STATUS, "statusText:", data);
 
-          if (data.type !== "DEBUG" && data.type !== "INFO") {
+          if (data.type !== "DEBUG") {
             toast({
               status: statusTextMap.get(data.type),
               description: data.text,
