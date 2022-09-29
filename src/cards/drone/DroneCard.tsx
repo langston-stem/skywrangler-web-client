@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { Text, useToast, UseToastOptions } from "@chakra-ui/react";
 import ReconnectingEventSource from "reconnecting-eventsource";
 import { fromEvent, Unsubscribable } from "rxjs";
@@ -13,6 +13,7 @@ import {
   useLongitude,
   useSpeed,
 } from "../objective2/hooks";
+import { useEffectOnce } from "usehooks-ts";
 
 const handleFlyMissionClick = (
   latitude: number,
@@ -166,7 +167,7 @@ const DroneCard: React.FunctionComponent = () => {
   const [isGyroCalOk, setIsGyroCalOk] = useState(true);
   const [isMagCalOk, setIsMagCalOk] = useState(true);
 
-  useEffect(() => {
+  useEffectOnce(() => {
     const eventSource = new ReconnectingEventSource("/api/drone/status");
     const subscriptions = new Array<Unsubscribable>();
 
@@ -246,20 +247,7 @@ const DroneCard: React.FunctionComponent = () => {
       subscriptions.forEach((s) => s.unsubscribe());
       eventSource.close();
     };
-  }, [
-    setIsConnectionOk,
-    setIsConnected,
-    setIsHealthAllOk,
-    setIsAccelCalOk,
-    setIsArmable,
-    setIsGpsOk,
-    setIsGyroCalOk,
-    setIsHomePositionOk,
-    setIsLocalPositionOk,
-    setIsMagCalOk,
-    setIsInAir,
-    toast,
-  ]);
+  });
 
   const { latitude } = useLatitude();
   const { elevation } = useElevation();
