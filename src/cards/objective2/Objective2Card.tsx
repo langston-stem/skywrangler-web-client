@@ -68,8 +68,8 @@ const Objective2Card: React.FunctionComponent = () => {
           Angle:
         </Text>
         <Slider
-          defaultValue={angle}
-          onChangeEnd={setAngle}
+          value={angle}
+          onChange={setAngle}
           min={30}
           max={90}
           step={30}
@@ -94,8 +94,8 @@ const Objective2Card: React.FunctionComponent = () => {
           Distance:
         </Text>
         <Slider
-          defaultValue={distanceValue}
-          onChangeEnd={setDistanceValue}
+          value={distanceValue}
+          onChange={setDistanceValue}
           min={0}
           max={3}
           step={1}
@@ -123,8 +123,8 @@ const Objective2Card: React.FunctionComponent = () => {
           Speed:
         </Text>
         <Slider
-          defaultValue={speed}
-          onChangeEnd={setSpeed}
+          value={speed}
+          onChange={setSpeed}
           min={2}
           max={8}
           step={3}
