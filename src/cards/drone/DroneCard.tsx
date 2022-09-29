@@ -97,6 +97,28 @@ const returnFailureNotification: UseToastOptions = {
   description: "Return failed.",
 };
 
+// http://mavsdk-python-docs.s3-website.eu-central-1.amazonaws.com/plugins/telemetry.html#mavsdk.telemetry.StatusTextType
+type StatusTextType =
+  | "DEBUG"
+  | "INFO"
+  | "NOTICE"
+  | "WARNING"
+  | "ERROR"
+  | "CRITICAL"
+  | "ALERT"
+  | "EMERGENCY";
+
+const statusTextMap: ReadonlyMap<StatusTextType, UseToastOptions["status"]> =
+  new Map([
+    ["DEBUG", undefined],
+    ["INFO", undefined],
+    ["NOTICE", "info"],
+    ["WARNING", "warning"],
+    ["ERROR", "error"],
+    ["CRITICAL", "error"],
+    ["EMERGENCY", "error"],
+  ]);
+
 /**
  * Subscribes to an event from an EventSource.
  *
@@ -135,7 +157,6 @@ const DroneCard: React.FunctionComponent = () => {
   const [isHomePositionOk, setIsHomePositionOk] = useState(false);
   const [isLocalPositionOk, setIsLocalPositionOk] = useState(false);
   const [isInAir, setIsInAir] = useState(false);
-  const [statusText, setStatusText] = useState("");
   const [isMissionInProgress, setIsMissionInProgress] = useState(false);
   const [isReturnInProgress, setIsReturnInProgress] = useState(false);
 
@@ -205,10 +226,20 @@ const DroneCard: React.FunctionComponent = () => {
     );
 
     subscriptions.push(
-      subscribeStatus<string>(eventSource, "statusText", (data) => {
-        console.debug(DRONE_STATUS, "statusText:", data);
-        setStatusText(data);
-      })
+      subscribeStatus<{ text: string; type: StatusTextType }>(
+        eventSource,
+        "statusText",
+        (data) => {
+          console.debug(DRONE_STATUS, "statusText:", data);
+
+          if (data.type !== "DEBUG" && data.type !== "INFO") {
+            toast({
+              status: statusTextMap.get(data.type),
+              description: data.text,
+            });
+          }
+        }
+      )
     );
 
     return () => {
@@ -227,7 +258,7 @@ const DroneCard: React.FunctionComponent = () => {
     setIsLocalPositionOk,
     setIsMagCalOk,
     setIsInAir,
-    setStatusText,
+    toast,
   ]);
 
   const { latitude } = useLatitude();
@@ -277,7 +308,6 @@ const DroneCard: React.FunctionComponent = () => {
 
   return (
     <Card title="Drone">
-      {isConnected && statusText && <Text>{statusText}</Text>}
       {!isConnected && <Text>Disconnected.</Text>}
       {isConnected && (!isHomePositionOk || !isLocalPositionOk) && (
         <Text>Waiting for GPS position OK.</Text>
