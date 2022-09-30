@@ -163,8 +163,8 @@ const Objective2Card: React.FunctionComponent = () => {
           <SliderMark value={90} {...labelStyles}>
             90°
           </SliderMark>
-          <SliderTrack bg={langstonBlue} />
-          <SliderThumb boxSize={3} bg={langstonOrange} />
+          <SliderTrack boxSize={2} bg={langstonBlue} />
+          <SliderThumb boxSize={4} bg={langstonOrange} />
         </Slider>
       </VStack>
       <VStack paddingBottom={4}>
@@ -188,8 +188,8 @@ const Objective2Card: React.FunctionComponent = () => {
           <SliderMark value={3} {...labelStyles}>
             30m
           </SliderMark>
-          <SliderTrack bg={langstonBlue} />
-          <SliderThumb boxSize={3} bg={langstonOrange} />
+          <SliderTrack boxSize={2} bg={langstonBlue} />
+          <SliderThumb boxSize={4} bg={langstonOrange} />
         </Slider>
       </VStack>
       <VStack paddingBottom={4}>
@@ -204,8 +204,8 @@ const Objective2Card: React.FunctionComponent = () => {
           <SliderMark value={8} {...labelStyles}>
             8m/s
           </SliderMark>
-          <SliderTrack bg={langstonBlue} />
-          <SliderThumb boxSize={3} bg={langstonOrange} />
+          <SliderTrack boxSize={2} bg={langstonBlue} />
+          <SliderThumb boxSize={4} bg={langstonOrange} />
         </Slider>
       </VStack>
     </Card>
