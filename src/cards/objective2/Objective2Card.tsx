@@ -23,7 +23,7 @@ import {
   useLongitude,
   useSpeed,
 } from "./hooks";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { useState } from "react";
 
 function fromDistance(distance: number): number {
@@ -78,6 +78,10 @@ const NumberInput: React.FunctionComponent<NumberInputProps> = ({
 }) => {
   const [stringValue, setStringValue] = useState(String(value));
   const [isValid, setIsValid] = useState(true);
+
+  useEffect(() => {
+    setStringValue(String(value));
+  }, [value]);
 
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
