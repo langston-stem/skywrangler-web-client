@@ -13,8 +13,11 @@ import {
   Box,
   AccordionIcon,
   AccordionPanel,
+  IconButton,
+  Button,
 } from "@chakra-ui/react";
 import { Text, VStack } from "@chakra-ui/react";
+import { MinusIcon } from "@chakra-ui/icons";
 import {
   useAngle,
   useDistance,
@@ -125,6 +128,21 @@ const Objective2Card: React.FunctionComponent = () => {
     [setDistance]
   );
 
+  const handleLatitudeSign = useCallback(() => {
+    console.log("quit", latitude);
+    setLatitude(-latitude);
+  }, [latitude, setLatitude]);
+
+  const handleLongitudeSign = useCallback(() => {
+    console.log("quit", longitude);
+    setLongitude(-longitude);
+  }, [longitude, setLongitude]);
+
+  const handleElevationSign = useCallback(() => {
+    console.log("quit", elevation);
+    setElevation(-elevation);
+  }, [elevation, setElevation]);
+
   return (
     <Card title="Objective 2">
       <Accordion allowToggle>
@@ -137,19 +155,26 @@ const Objective2Card: React.FunctionComponent = () => {
           </AccordionButton>
           <AccordionPanel pb={4}>
             <SimpleGrid
-              columns={2}
+              columns={3}
               spacing={1}
-              gridTemplateColumns="90px auto"
+              gridTemplateColumns="75px 35px auto"
               alignItems="center"
               justifyItems="start"
             >
               <Text>Latitude</Text>
+              <Button onClick={handleLatitudeSign} size="xs">
+                +/-
+              </Button>
               <NumberInput value={latitude} onChange={setLatitude} />
-
               <Text>Longitude</Text>
+              <Button onClick={handleLongitudeSign} size="xs">
+                +/-
+              </Button>
               <NumberInput value={longitude} onChange={setLongitude} />
-
               <Text>Elevation</Text>
+              <Button onClick={handleElevationSign} size="xs">
+                +/-
+              </Button>
               <NumberInput value={elevation} onChange={setElevation} />
             </SimpleGrid>
           </AccordionPanel>
