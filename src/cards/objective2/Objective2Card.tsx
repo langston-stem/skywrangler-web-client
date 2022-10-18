@@ -13,11 +13,9 @@ import {
   Box,
   AccordionIcon,
   AccordionPanel,
-  IconButton,
   Button,
 } from "@chakra-ui/react";
 import { Text, VStack } from "@chakra-ui/react";
-import { MinusIcon } from "@chakra-ui/icons";
 import {
   useAngle,
   useDistance,
@@ -129,17 +127,14 @@ const Objective2Card: React.FunctionComponent = () => {
   );
 
   const handleLatitudeSign = useCallback(() => {
-    console.log("quit", latitude);
     setLatitude(-latitude);
   }, [latitude, setLatitude]);
 
   const handleLongitudeSign = useCallback(() => {
-    console.log("quit", longitude);
     setLongitude(-longitude);
   }, [longitude, setLongitude]);
 
   const handleElevationSign = useCallback(() => {
-    console.log("quit", elevation);
     setElevation(-elevation);
   }, [elevation, setElevation]);
 
