@@ -297,6 +297,8 @@ const DroneCard: React.FunctionComponent = () => {
     speed,
     distance,
     angle,
+    azimuth,
+    length,
   ]);
 
   const handleReturnButtonClick = useCallback(() => {
