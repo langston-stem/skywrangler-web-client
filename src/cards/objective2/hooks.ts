@@ -47,3 +47,19 @@ export function useDistance(): {
   const [distance, setDistance] = useLocalStorage("objective2-distance", 30);
   return { distance, setDistance };
 }
+
+export function useAzimuth(): {
+  azimuth: number;
+  setAzimuth: (value: number) => void;
+} {
+  const [azimuth, setAzimuth] = useLocalStorage("objective2-azimuth", 0);
+  return { azimuth, setAzimuth };
+}
+
+export function useLength(): {
+  length: number;
+  setLength: (value: number) => void;
+} {
+  const [length, setLength] = useLocalStorage("objective2-length", 0);
+  return { length, setLength };
+}
