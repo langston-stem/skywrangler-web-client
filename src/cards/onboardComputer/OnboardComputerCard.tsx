@@ -40,7 +40,11 @@ type Props = {
 };
 
 const OnboardComputerCard: React.FunctionComponent<Props> = (props) => {
-  const toast = useToast({ position: "top", isClosable: true });
+  const toast = useToast({
+    position: "top",
+    duration: 15000,
+    isClosable: true,
+  });
 
   const onShutDownClick = useCallback(
     () =>
