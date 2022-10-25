@@ -160,7 +160,7 @@ const DRONE_STATUS = "drone status:";
 const DroneCard: React.FunctionComponent = () => {
   const toast = useToast({
     position: "top",
-    duration: 30000,
+    duration: 15000,
     isClosable: true,
   });
   const [isConnectionOk, setIsConnectionOk] = useState(false);

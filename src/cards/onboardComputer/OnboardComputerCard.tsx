@@ -42,7 +42,7 @@ type Props = {
 const OnboardComputerCard: React.FunctionComponent<Props> = (props) => {
   const toast = useToast({
     position: "top",
-    duration: 30000,
+    duration: 15000,
     isClosable: true,
   });
 
