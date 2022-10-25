@@ -18,9 +18,11 @@ import {
 import { Text, VStack } from "@chakra-ui/react";
 import {
   useAngle,
+  useAzimuth,
   useDistance,
   useElevation,
   useLatitude,
+  useLength,
   useLongitude,
   useSpeed,
 } from "./hooks";
@@ -114,6 +116,8 @@ const Objective2Card: React.FunctionComponent = () => {
   const { latitude, setLatitude } = useLatitude();
   const { longitude, setLongitude } = useLongitude();
   const { elevation, setElevation } = useElevation();
+  const { azimuth, setAzimuth } = useAzimuth();
+  const { length, setLength } = useLength();
   const { angle, setAngle } = useAngle();
   const { distance, setDistance } = useDistance();
   const { speed, setSpeed } = useSpeed();
@@ -175,6 +179,32 @@ const Objective2Card: React.FunctionComponent = () => {
           </AccordionPanel>
         </AccordionItem>
       </Accordion>
+
+      <Accordion allowToggle>
+        <AccordionItem>
+          <AccordionButton>
+            <Box flex="1" textAlign="center">
+              Transect
+            </Box>
+            <AccordionIcon />
+          </AccordionButton>
+          <AccordionPanel pb={4}>
+            <SimpleGrid
+              columns={2}
+              spacing={1}
+              gridTemplateColumns="75px auto"
+              alignItems="center"
+              justifyItems="start"
+            >
+              <Text>Azimuth</Text>
+              <NumberInput value={azimuth} onChange={setAzimuth} />
+              <Text>Length</Text>
+              <NumberInput value={length} onChange={setLength} />
+            </SimpleGrid>
+          </AccordionPanel>
+        </AccordionItem>
+      </Accordion>
+
       <VStack paddingBottom={4}>
         <Text fontSize={"small"}>Angle</Text>
         <Slider value={angle} onChange={setAngle} min={30} max={90} step={30}>
