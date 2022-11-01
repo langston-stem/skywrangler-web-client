@@ -156,21 +156,21 @@ const Objective2Card: React.FunctionComponent = () => {
             <SimpleGrid
               columns={3}
               spacing={1}
-              gridTemplateColumns="75px 35px auto"
+              gridTemplateColumns="100px 35px auto"
               alignItems="center"
               justifyItems="start"
             >
-              <Text>Latitude</Text>
+              <Text>Latitude (°)</Text>
               <Button onClick={handleLatitudeSign} size="xs">
                 +/-
               </Button>
               <NumberInput value={latitude} onChange={setLatitude} />
-              <Text>Longitude</Text>
+              <Text>Longitude (°)</Text>
               <Button onClick={handleLongitudeSign} size="xs">
                 +/-
               </Button>
               <NumberInput value={longitude} onChange={setLongitude} />
-              <Text>Elevation</Text>
+              <Text>Elevation (m)</Text>
               <Button onClick={handleElevationSign} size="xs">
                 +/-
               </Button>
@@ -192,13 +192,13 @@ const Objective2Card: React.FunctionComponent = () => {
             <SimpleGrid
               columns={2}
               spacing={1}
-              gridTemplateColumns="75px auto"
+              gridTemplateColumns="100px auto"
               alignItems="center"
               justifyItems="start"
             >
-              <Text>Azimuth</Text>
+              <Text>Azimuth (°) </Text>
               <NumberInput value={azimuth} onChange={setAzimuth} />
-              <Text>Length</Text>
+              <Text>Length (m)</Text>
               <NumberInput value={length} onChange={setLength} />
             </SimpleGrid>
           </AccordionPanel>
