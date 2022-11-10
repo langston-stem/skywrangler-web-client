@@ -28,6 +28,7 @@ import {
 } from "./hooks";
 import { useCallback, useEffect } from "react";
 import { useState } from "react";
+import Transect from "./Transect";
 
 function fromDistance(distance: number): number {
   if (distance === 3) {
@@ -201,6 +202,7 @@ const Objective2Card: React.FunctionComponent = () => {
               <Text>Length (m)</Text>
               <NumberInput value={length} onChange={setLength} />
             </SimpleGrid>
+            <Transect />
           </AccordionPanel>
         </AccordionItem>
       </Accordion>
