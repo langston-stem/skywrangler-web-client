@@ -1,9 +1,11 @@
 import { Box } from "@chakra-ui/react";
 import React, { useEffect, useRef } from "react";
 import Two from "two.js";
+import { useAzimuth } from "./hooks";
 
 export default function Transect() {
   var domElement = useRef<HTMLDivElement>(null);
+  var { azimuth } = useAzimuth();
 
   useEffect(() => {
     if (!domElement.current) {
@@ -13,7 +15,6 @@ export default function Transect() {
     var two = new Two({
       height: 250,
       width: 250,
-      autostart: true,
     }).appendTo(domElement.current);
 
     const transectLength = two.width * 0.7;
@@ -24,9 +25,9 @@ export default function Transect() {
     var rect = two.makeRectangle(0, 0, 100, 100);
     var circle = two.makeCircle(0, 0, 2);
 
-    const azimuth = two.makeArrow(0, 0, 0, -110, 10);
-    azimuth.stroke = "red";
-    azimuth.linewidth = 3;
+    const azimuthArrow = two.makeArrow(0, 0, 0, -110, 10);
+    azimuthArrow.stroke = "red";
+    azimuthArrow.linewidth = 3;
 
     const azimuthLabel = two.makeText("Azimuth", -7, -73.5);
     azimuthLabel.stroke = "red";
@@ -54,30 +55,26 @@ export default function Transect() {
 
     var group = two.makeGroup(
       rect,
-      azimuth,
+      azimuthArrow,
       transect,
       transectLabel,
       azimuthLabel
     );
     group.position.set(two.width / 2, two.height / 2);
+    group.rotation = (azimuth * Math.PI) / 180;
 
     var goat = two.makeSprite("goat.svg", two.width / 2, two.height / 2);
     goat.scale = 0.02;
-
-    two.bind("update", () => {
-      group.rotation += 0.001;
-    });
+    two.update();
 
     return () => {
-      two.unbind("update");
-      two.pause();
       var parent = two.renderer.domElement.parentElement;
 
       if (parent) {
         parent.removeChild(two.renderer.domElement);
       }
     };
-  }, []);
+  }, [azimuth]);
 
   return <Box ref={domElement} w="100%" />;
 }
