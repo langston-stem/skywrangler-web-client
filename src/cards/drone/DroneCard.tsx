@@ -88,7 +88,7 @@ const sendReturnRequest = () =>
 
 const missionSuccessNotification: UseToastOptions = {
   status: "info",
-  description: "Mission complete.",
+  description: "Mission started.",
 };
 
 const missionFailureNotification: UseToastOptions = {
