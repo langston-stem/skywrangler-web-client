@@ -277,7 +277,7 @@ const Objective2Card: React.FunctionComponent = () => {
             <Transect />
             <Text fontSize={"small"}>
               The <strong> Transect</strong> refers to the line in which the
-              drone will fly, when its the closest to the livestock.
+              drone will fly when its the closest to the livestock.
             </Text>
             <Text pb={2} fontSize={"small"}>
               The <strong> Azimuth</strong> refers to the angle from north in
