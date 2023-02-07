@@ -192,17 +192,102 @@ const Objective2Card: React.FunctionComponent = () => {
           <AccordionPanel pb={4}>
             <SimpleGrid
               columns={2}
-              spacing={1}
-              gridTemplateColumns="100px auto"
+              spacing={10}
+              pb={8}
+              gridTemplateColumns="45px auto"
               alignItems="center"
               justifyItems="start"
             >
-              <Text>Azimuth (°) </Text>
-              <NumberInput value={azimuth} onChange={setAzimuth} />
+              <Text>Azimuth (°)</Text>
+              <Slider
+                value={azimuth}
+                onChange={setAzimuth}
+                min={0}
+                max={360}
+                step={15}
+              >
+                <SliderMark value={0} {...labelStyles}>
+                  0°
+                </SliderMark>
+                <SliderMark value={90} {...labelStyles}>
+                  90°
+                </SliderMark>
+                <SliderMark value={180} {...labelStyles}>
+                  180°
+                </SliderMark>
+                <SliderMark value={270} {...labelStyles}>
+                  270°
+                </SliderMark>
+                <SliderMark value={360} {...labelStyles}>
+                  360°
+                </SliderMark>
+                <SliderMark
+                  value={azimuth}
+                  textAlign="center"
+                  bg="blue.500"
+                  color="white"
+                  mt="-7"
+                  ml="-5"
+                  w="9"
+                >
+                  {azimuth}°
+                </SliderMark>
+                <SliderTrack boxSize={1} bg={langstonBlue} />
+                <SliderThumb boxSize={2} bg={langstonOrange} />
+              </Slider>
+
               <Text>Length (m)</Text>
-              <NumberInput value={length} onChange={setLength} />
+              <Slider
+                value={length}
+                onChange={setLength}
+                min={0}
+                max={120}
+                step={30}
+              >
+                <SliderMark value={0} {...labelStyles}>
+                  0
+                </SliderMark>
+                <SliderMark value={30} {...labelStyles}>
+                  30
+                </SliderMark>
+                <SliderMark value={60} {...labelStyles}>
+                  60
+                </SliderMark>
+                <SliderMark value={90} {...labelStyles}>
+                  90
+                </SliderMark>
+                <SliderMark value={120} {...labelStyles}>
+                  120
+                </SliderMark>
+                <SliderMark
+                  value={length}
+                  textAlign="center"
+                  bg="blue.500"
+                  color="white"
+                  mt="-6"
+                  ml="-5"
+                  w="11"
+                >
+                  {length}m
+                </SliderMark>
+                <SliderTrack boxSize={1} bg={langstonBlue} />
+                <SliderThumb boxSize={2} bg={langstonOrange} />
+              </Slider>
             </SimpleGrid>
             <Transect />
+            <Text fontSize={"small"}>
+              The <strong> Transect</strong> refers to the line in which the
+              drone will fly when its the closest to the livestock.
+            </Text>
+            <Text pb={2} fontSize={"small"}>
+              The <strong> Azimuth</strong> refers to the angle from north in
+              which the UAV will fly, relative to the livestock.
+            </Text>
+            <Text pb={9} fontSize={"xs"}>
+              <strong>EX:</strong>If the UAV is set to fly at an azimuth of 90°,
+              the UAV will travel in a transect from <u> North to South</u> of
+              the livestock.
+            </Text>
           </AccordionPanel>
         </AccordionItem>
       </Accordion>
