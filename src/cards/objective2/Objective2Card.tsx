@@ -276,17 +276,17 @@ const Objective2Card: React.FunctionComponent = () => {
             </SimpleGrid>
             <Transect />
             <Text fontSize={"small"}>
-              The <strong> Transect</strong> refers to the line in which the
+              The <strong>transect</strong> refers to the line in which the
               drone will fly when its the closest to the livestock.
             </Text>
             <Text pb={2} fontSize={"small"}>
-              The <strong> Azimuth</strong> refers to the angle from north in
+              The <strong>azimuth</strong> refers to the angle from north in
               which the UAV will fly, relative to the livestock.
             </Text>
             <Text pb={9} fontSize={"xs"}>
-              <strong>EX:</strong>If the UAV is set to fly at an azimuth of 90°,
-              the UAV will travel in a transect from <u> North to South</u> of
-              the livestock.
+              <strong>Example:</strong> if the UAV is set to fly at an azimuth
+              of 90°, the UAV will travel on the East (East = 90°) side of the
+              livestock in a transect from <u>North to South</u>.
             </Text>
           </AccordionPanel>
         </AccordionItem>
