@@ -18,12 +18,8 @@ export default function Transect() {
     }).appendTo(domElement.current);
 
     const transectLength = two.width * 0.7;
-    const azimuthLength = two.width * 0.7;
-
-    var radius = 50;
 
     var rect = two.makeRectangle(0, 0, 100, 100);
-    var circle = two.makeCircle(0, 0, 2);
 
     const azimuthArrow = two.makeArrow(0, 0, 0, -110, 10);
     azimuthArrow.stroke = "red";
