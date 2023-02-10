@@ -1,25 +1,26 @@
-import { Box } from "@chakra-ui/react";
+import { Box, useColorModeValue } from "@chakra-ui/react";
 import React, { useEffect, useRef } from "react";
 import Two from "two.js";
 import { useAzimuth } from "./hooks";
 
 export default function Transect() {
-  var domElement = useRef<HTMLDivElement>(null);
-  var { azimuth } = useAzimuth();
+  const domElement = useRef<HTMLDivElement>(null);
+  const { azimuth } = useAzimuth();
+  const transectColor = useColorModeValue("blue", "lightblue");
 
   useEffect(() => {
     if (!domElement.current) {
       return;
     }
 
-    var two = new Two({
+    const two = new Two({
       height: 250,
       width: 250,
     }).appendTo(domElement.current);
 
     const transectLength = two.width * 0.7;
 
-    var rect = two.makeRectangle(0, 0, 100, 100);
+    const rect = two.makeRectangle(0, 0, 100, 50);
 
     const azimuthArrow = two.makeArrow(0, 0, 0, -110, 10);
     azimuthArrow.stroke = "red";
@@ -39,17 +40,17 @@ export default function Transect() {
     );
 
     transect.linewidth = 3;
-    transect.stroke = "blue";
+    transect.stroke = transectColor;
 
     const transectLabel = two.makeText(
       "Transect",
       transectLength / 2 - 50,
       -57
     );
-    transectLabel.stroke = "blue";
+    transectLabel.stroke = transectColor;
     transectLabel.size = 12;
 
-    var group = two.makeGroup(
+    const group = two.makeGroup(
       rect,
       azimuthArrow,
       transect,
@@ -59,18 +60,18 @@ export default function Transect() {
     group.position.set(two.width / 2, two.height / 2);
     group.rotation = (azimuth * Math.PI) / 180;
 
-    var goat = two.makeSprite("goat.svg", two.width / 2, two.height / 2);
+    const goat = two.makeSprite("goat.svg", two.width / 2, two.height / 2);
     goat.scale = 0.02;
     two.update();
 
     return () => {
-      var parent = two.renderer.domElement.parentElement;
+      const parent = two.renderer.domElement.parentElement;
 
       if (parent) {
         parent.removeChild(two.renderer.domElement);
       }
     };
-  }, [azimuth]);
+  }, [azimuth, transectColor]);
 
   return <Box ref={domElement} w="100%" />;
 }

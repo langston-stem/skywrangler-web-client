@@ -14,6 +14,9 @@ import {
   AccordionIcon,
   AccordionPanel,
   Button,
+  SliderMarkProps,
+  SliderThumbProps,
+  SliderTrackProps,
 } from "@chakra-ui/react";
 import { Text, VStack } from "@chakra-ui/react";
 import {
@@ -70,6 +73,16 @@ const labelStyles = {
 
 const langstonBlue = "rgb(27,54,104)";
 const langstonOrange = "rgb(242,104,42)";
+
+const sliderThumbProps: SliderThumbProps = {
+  boxSize: 4,
+  bg: langstonOrange,
+};
+
+const sliderTrackProps: SliderTrackProps = {
+  boxSize: 2,
+  bg: langstonBlue,
+};
 
 type NumberInputProps = {
   value: number;
@@ -143,6 +156,21 @@ const Objective2Card: React.FunctionComponent = () => {
     setElevation(-elevation);
   }, [elevation, setElevation]);
 
+  const transectSliderMarkProps = React.useMemo<Omit<SliderMarkProps, "value">>(
+    () => ({
+      textAlign: "center",
+      bg: langstonBlue,
+      color: "white",
+      mt: "-10",
+      ml: "-5",
+      w: "11",
+      paddingBlock: "2px",
+      paddingInline: "5px",
+      borderRadius: "5px",
+    }),
+    []
+  );
+
   return (
     <Card title="Objective 2">
       <Accordion allowToggle>
@@ -197,6 +225,7 @@ const Objective2Card: React.FunctionComponent = () => {
               gridTemplateColumns="45px auto"
               alignItems="center"
               justifyItems="start"
+              marginTop="8px"
             >
               <Text>Azimuth (°)</Text>
               <Slider
@@ -205,35 +234,28 @@ const Objective2Card: React.FunctionComponent = () => {
                 min={0}
                 max={360}
                 step={15}
+                padding="2px"
               >
                 <SliderMark value={0} {...labelStyles}>
-                  0°
+                  0
                 </SliderMark>
                 <SliderMark value={90} {...labelStyles}>
-                  90°
+                  90
                 </SliderMark>
                 <SliderMark value={180} {...labelStyles}>
-                  180°
+                  180
                 </SliderMark>
                 <SliderMark value={270} {...labelStyles}>
-                  270°
+                  270
                 </SliderMark>
                 <SliderMark value={360} {...labelStyles}>
-                  360°
+                  360
                 </SliderMark>
-                <SliderMark
-                  value={azimuth}
-                  textAlign="center"
-                  bg="blue.500"
-                  color="white"
-                  mt="-7"
-                  ml="-5"
-                  w="9"
-                >
-                  {azimuth}°
+                <SliderMark value={azimuth} {...transectSliderMarkProps}>
+                  {azimuth}
                 </SliderMark>
-                <SliderTrack boxSize={1} bg={langstonBlue} />
-                <SliderThumb boxSize={2} bg={langstonOrange} />
+                <SliderTrack {...sliderTrackProps} />
+                <SliderThumb {...sliderThumbProps} />
               </Slider>
 
               <Text>Length (m)</Text>
@@ -241,37 +263,29 @@ const Objective2Card: React.FunctionComponent = () => {
                 value={length}
                 onChange={setLength}
                 min={0}
-                max={120}
-                step={30}
+                max={200}
+                step={5}
               >
                 <SliderMark value={0} {...labelStyles}>
                   0
                 </SliderMark>
-                <SliderMark value={30} {...labelStyles}>
-                  30
+                <SliderMark value={50} {...labelStyles}>
+                  50
                 </SliderMark>
-                <SliderMark value={60} {...labelStyles}>
-                  60
+                <SliderMark value={100} {...labelStyles}>
+                  100
                 </SliderMark>
-                <SliderMark value={90} {...labelStyles}>
-                  90
+                <SliderMark value={150} {...labelStyles}>
+                  150
                 </SliderMark>
-                <SliderMark value={120} {...labelStyles}>
-                  120
+                <SliderMark value={200} {...labelStyles}>
+                  200
                 </SliderMark>
-                <SliderMark
-                  value={length}
-                  textAlign="center"
-                  bg="blue.500"
-                  color="white"
-                  mt="-6"
-                  ml="-5"
-                  w="11"
-                >
-                  {length}m
+                <SliderMark value={length} {...transectSliderMarkProps}>
+                  {length}
                 </SliderMark>
-                <SliderTrack boxSize={1} bg={langstonBlue} />
-                <SliderThumb boxSize={2} bg={langstonOrange} />
+                <SliderTrack {...sliderTrackProps} />
+                <SliderThumb {...sliderThumbProps} />
               </Slider>
             </SimpleGrid>
             <Transect />
@@ -304,8 +318,8 @@ const Objective2Card: React.FunctionComponent = () => {
           <SliderMark value={90} {...labelStyles}>
             90°
           </SliderMark>
-          <SliderTrack boxSize={2} bg={langstonBlue} />
-          <SliderThumb boxSize={4} bg={langstonOrange} />
+          <SliderTrack {...sliderTrackProps} />
+          <SliderThumb {...sliderThumbProps} />
         </Slider>
       </VStack>
       <VStack paddingBottom={4}>
@@ -329,8 +343,8 @@ const Objective2Card: React.FunctionComponent = () => {
           <SliderMark value={3} {...labelStyles}>
             30m
           </SliderMark>
-          <SliderTrack boxSize={2} bg={langstonBlue} />
-          <SliderThumb boxSize={4} bg={langstonOrange} />
+          <SliderTrack {...sliderTrackProps} />
+          <SliderThumb {...sliderThumbProps} />
         </Slider>
       </VStack>
       <VStack paddingBottom={4}>
@@ -345,8 +359,8 @@ const Objective2Card: React.FunctionComponent = () => {
           <SliderMark value={8} {...labelStyles}>
             8m/s
           </SliderMark>
-          <SliderTrack boxSize={2} bg={langstonBlue} />
-          <SliderThumb boxSize={4} bg={langstonOrange} />
+          <SliderTrack {...sliderTrackProps} />
+          <SliderThumb {...sliderThumbProps} />
         </Slider>
       </VStack>
     </Card>

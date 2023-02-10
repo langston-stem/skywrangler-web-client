@@ -60,6 +60,6 @@ export function useLength(): {
   length: number;
   setLength: (value: number) => void;
 } {
-  const [length, setLength] = useLocalStorage("objective2-length", 0);
+  const [length, setLength] = useLocalStorage("objective2-length", 100);
   return { length, setLength };
 }
