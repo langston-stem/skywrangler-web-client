@@ -25,8 +25,10 @@ import {
   useDistance,
   useElevation,
   useLatitude,
+  useLatitude2,
   useLength,
   useLongitude,
+  useLongitude2,
   useSpeed,
 } from "./hooks";
 import { useCallback, useEffect } from "react";
@@ -128,7 +130,9 @@ const NumberInput: React.FunctionComponent<NumberInputProps> = ({
 
 const Objective2Card: React.FunctionComponent = () => {
   const { latitude, setLatitude } = useLatitude();
+  const { latitude2, setLatitude2 } = useLatitude2();
   const { longitude, setLongitude } = useLongitude();
+  const { longitude2, setLongitude2 } = useLongitude2();
   const { elevation, setElevation } = useElevation();
   const { azimuth, setAzimuth } = useAzimuth();
   const { length, setLength } = useLength();
@@ -306,6 +310,36 @@ const Objective2Card: React.FunctionComponent = () => {
         </AccordionItem>
       </Accordion>
 
+      <Accordion allowToggle>
+        <AccordionItem>
+          <AccordionButton>
+            <Box flex="1" textAlign="center">
+              Return Point
+            </Box>
+            <AccordionIcon />
+          </AccordionButton>
+          <AccordionPanel pb={4}>
+            <SimpleGrid
+              columns={3}
+              spacing={1}
+              gridTemplateColumns="100px 35px auto"
+              alignItems="center"
+              justifyItems="start"
+            >
+              <Text>Latitude (°)</Text>
+              <Button onClick={handleLatitudeSign} size="xs">
+                +/-
+              </Button>
+              <NumberInput value={latitude2} onChange={setLatitude2} />
+              <Text>Longitude (°)</Text>
+              <Button onClick={handleLongitudeSign} size="xs">
+                +/-
+              </Button>
+              <NumberInput value={longitude2} onChange={setLongitude2} />
+            </SimpleGrid>
+          </AccordionPanel>
+        </AccordionItem>
+      </Accordion>
       <VStack paddingBottom={4}>
         <Text fontSize={"small"}>Angle</Text>
         <Slider value={angle} onChange={setAngle} min={30} max={90} step={30}>

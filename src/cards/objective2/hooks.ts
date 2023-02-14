@@ -8,6 +8,14 @@ export function useLatitude(): {
   return { latitude, setLatitude };
 }
 
+export function useLatitude2(): {
+  latitude2: number;
+  setLatitude2: (value: number) => void;
+} {
+  const [latitude2, setLatitude2] = useLocalStorage("objective2-latitude", 0);
+  return { latitude2, setLatitude2 };
+}
+
 export function useLongitude(): {
   longitude: number;
   setLongitude: (value: number) => void;
@@ -16,6 +24,16 @@ export function useLongitude(): {
   return { longitude, setLongitude };
 }
 
+export function useLongitude2(): {
+  longitude2: number;
+  setLongitude2: (value: number) => void;
+} {
+  const [longitude2, setLongitude2] = useLocalStorage(
+    "objective2-longitude",
+    0
+  );
+  return { longitude2, setLongitude2 };
+}
 export function useAngle(): {
   angle: number;
   setAngle: (value: number) => void;
