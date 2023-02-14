@@ -14,6 +14,8 @@ import {
   useLongitude,
   useSpeed,
   useLength,
+  useReturnPointLatitude,
+  useReturnPointLongitude,
 } from "../objective2/hooks";
 import { useEffectOnce } from "usehooks-ts";
 
@@ -25,7 +27,9 @@ const handleFlyMissionClick = (
   distance: number,
   angle: number,
   azimuth: number,
-  length: number
+  length: number,
+  ReturnPointLatitude: number,
+  ReturnPointLongitude: number
 ) =>
   new Promise<void>(async (resolve, reject) => {
     try {
@@ -269,7 +273,8 @@ const DroneCard: React.FunctionComponent = () => {
   const { longitude } = useLongitude();
   const { azimuth } = useAzimuth();
   const { length } = useLength();
-
+  const { ReturnPointLatitude } = useReturnPointLatitude();
+  const { ReturnPointLongitude } = useReturnPointLongitude();
   const handleLaunchButtonClick = useCallback(() => {
     setIsMissionInProgress(true);
 
@@ -281,7 +286,9 @@ const DroneCard: React.FunctionComponent = () => {
       distance,
       angle,
       azimuth,
-      length
+      length,
+      ReturnPointLatitude,
+      ReturnPointLongitude
     )
       .then(
         () => toast(missionSuccessNotification),

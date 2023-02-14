@@ -25,10 +25,10 @@ import {
   useDistance,
   useElevation,
   useLatitude,
-  useLatitude2,
+  useReturnPointLatitude,
   useLength,
   useLongitude,
-  useLongitude2,
+  useReturnPointLongitude,
   useSpeed,
 } from "./hooks";
 import { useCallback, useEffect } from "react";
@@ -130,9 +130,11 @@ const NumberInput: React.FunctionComponent<NumberInputProps> = ({
 
 const Objective2Card: React.FunctionComponent = () => {
   const { latitude, setLatitude } = useLatitude();
-  const { latitude2, setLatitude2 } = useLatitude2();
+  const { ReturnPointLatitude, setReturnPointLatitude } =
+    useReturnPointLatitude();
   const { longitude, setLongitude } = useLongitude();
-  const { longitude2, setLongitude2 } = useLongitude2();
+  const { ReturnPointLongitude, setReturnPointLongitude } =
+    useReturnPointLongitude();
   const { elevation, setElevation } = useElevation();
   const { azimuth, setAzimuth } = useAzimuth();
   const { length, setLength } = useLength();
@@ -330,12 +332,18 @@ const Objective2Card: React.FunctionComponent = () => {
               <Button onClick={handleLatitudeSign} size="xs">
                 +/-
               </Button>
-              <NumberInput value={latitude2} onChange={setLatitude2} />
+              <NumberInput
+                value={ReturnPointLatitude}
+                onChange={setReturnPointLatitude}
+              />
               <Text>Longitude (°)</Text>
               <Button onClick={handleLongitudeSign} size="xs">
                 +/-
               </Button>
-              <NumberInput value={longitude2} onChange={setLongitude2} />
+              <NumberInput
+                value={ReturnPointLongitude}
+                onChange={setReturnPointLongitude}
+              />
             </SimpleGrid>
           </AccordionPanel>
         </AccordionItem>
