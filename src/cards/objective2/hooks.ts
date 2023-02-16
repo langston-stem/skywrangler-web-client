@@ -8,6 +8,17 @@ export function useLatitude(): {
   return { latitude, setLatitude };
 }
 
+export function useReturnPointLatitude(): {
+  returnPointLatitude: number;
+  setReturnPointLatitude: (value: number) => void;
+} {
+  const [returnPointLatitude, setReturnPointLatitude] = useLocalStorage(
+    "return-point-latitude",
+    0
+  );
+  return { returnPointLatitude, setReturnPointLatitude };
+}
+
 export function useLongitude(): {
   longitude: number;
   setLongitude: (value: number) => void;
@@ -16,6 +27,16 @@ export function useLongitude(): {
   return { longitude, setLongitude };
 }
 
+export function useReturnPointLongitude(): {
+  returnPointLongitude: number;
+  setReturnPointLongitude: (value: number) => void;
+} {
+  const [returnPointLongitude, setReturnPointLongitude] = useLocalStorage(
+    "return-point-longitude",
+    0
+  );
+  return { returnPointLongitude, setReturnPointLongitude };
+}
 export function useAngle(): {
   angle: number;
   setAngle: (value: number) => void;

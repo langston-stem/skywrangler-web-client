@@ -25,8 +25,10 @@ import {
   useDistance,
   useElevation,
   useLatitude,
+  useReturnPointLatitude,
   useLength,
   useLongitude,
+  useReturnPointLongitude,
   useSpeed,
 } from "./hooks";
 import { useCallback, useEffect } from "react";
@@ -128,7 +130,11 @@ const NumberInput: React.FunctionComponent<NumberInputProps> = ({
 
 const Objective2Card: React.FunctionComponent = () => {
   const { latitude, setLatitude } = useLatitude();
+  const { returnPointLatitude, setReturnPointLatitude } =
+    useReturnPointLatitude();
   const { longitude, setLongitude } = useLongitude();
+  const { returnPointLongitude, setReturnPointLongitude } =
+    useReturnPointLongitude();
   const { elevation, setElevation } = useElevation();
   const { azimuth, setAzimuth } = useAzimuth();
   const { length, setLength } = useLength();
@@ -148,9 +154,17 @@ const Objective2Card: React.FunctionComponent = () => {
     setLatitude(-latitude);
   }, [latitude, setLatitude]);
 
+  const handleReturnLatitudeSign = useCallback(() => {
+    setReturnPointLatitude(-returnPointLatitude);
+  }, [returnPointLatitude, setReturnPointLatitude]);
+
   const handleLongitudeSign = useCallback(() => {
     setLongitude(-longitude);
   }, [longitude, setLongitude]);
+
+  const handleReturnLongitudeSign = useCallback(() => {
+    setReturnPointLongitude(-returnPointLongitude);
+  }, [returnPointLongitude, setReturnPointLongitude]);
 
   const handleElevationSign = useCallback(() => {
     setElevation(-elevation);
@@ -306,6 +320,42 @@ const Objective2Card: React.FunctionComponent = () => {
         </AccordionItem>
       </Accordion>
 
+      <Accordion allowToggle>
+        <AccordionItem>
+          <AccordionButton>
+            <Box flex="1" textAlign="center">
+              Return Point
+            </Box>
+            <AccordionIcon />
+          </AccordionButton>
+          <AccordionPanel pb={4}>
+            <SimpleGrid
+              columns={3}
+              spacing={1}
+              gridTemplateColumns="100px 35px auto"
+              alignItems="center"
+              justifyItems="start"
+            >
+              <Text>Latitude (°)</Text>
+              <Button onClick={handleReturnLatitudeSign} size="xs">
+                +/-
+              </Button>
+              <NumberInput
+                value={returnPointLatitude}
+                onChange={setReturnPointLatitude}
+              />
+              <Text>Longitude (°)</Text>
+              <Button onClick={handleReturnLongitudeSign} size="xs">
+                +/-
+              </Button>
+              <NumberInput
+                value={returnPointLongitude}
+                onChange={setReturnPointLongitude}
+              />
+            </SimpleGrid>
+          </AccordionPanel>
+        </AccordionItem>
+      </Accordion>
       <VStack paddingBottom={4}>
         <Text fontSize={"small"}>Angle</Text>
         <Slider value={angle} onChange={setAngle} min={30} max={90} step={30}>
