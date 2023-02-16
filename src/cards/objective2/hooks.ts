@@ -8,15 +8,15 @@ export function useLatitude(): {
   return { latitude, setLatitude };
 }
 
-export function useReturnPointLatitude(): {
-  ReturnPointLatitude: number;
-  setReturnPointLatitude: (value: number) => void;
+export function usereturnPointLatitude(): {
+  returnPointLatitude: number;
+  setreturnPointLatitude: (value: number) => void;
 } {
-  const [ReturnPointLatitude, setReturnPointLatitude] = useLocalStorage(
+  const [returnPointLatitude, setreturnPointLatitude] = useLocalStorage(
     "objective2-latitude",
     0
   );
-  return { ReturnPointLatitude, setReturnPointLatitude };
+  return { returnPointLatitude, setreturnPointLatitude };
 }
 
 export function useLongitude(): {
@@ -27,15 +27,15 @@ export function useLongitude(): {
   return { longitude, setLongitude };
 }
 
-export function useReturnPointLongitude(): {
-  ReturnPointLongitude: number;
-  setReturnPointLongitude: (value: number) => void;
+export function usereturnPointLongitude(): {
+  returnPointLongitude: number;
+  setreturnPointLongitude: (value: number) => void;
 } {
-  const [ReturnPointLongitude, setReturnPointLongitude] = useLocalStorage(
+  const [returnPointLongitude, setreturnPointLongitude] = useLocalStorage(
     "objective2-longitude",
     0
   );
-  return { ReturnPointLongitude, setReturnPointLongitude };
+  return { returnPointLongitude, setreturnPointLongitude };
 }
 export function useAngle(): {
   angle: number;
