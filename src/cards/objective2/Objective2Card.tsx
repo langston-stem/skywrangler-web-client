@@ -154,9 +154,17 @@ const Objective2Card: React.FunctionComponent = () => {
     setLatitude(-latitude);
   }, [latitude, setLatitude]);
 
+  const handleReturnLatitudeSign = useCallback(() => {
+    setReturnPointLatitude(-returnPointLatitude);
+  }, [returnPointLatitude, setReturnPointLatitude]);
+
   const handleLongitudeSign = useCallback(() => {
     setLongitude(-longitude);
   }, [longitude, setLongitude]);
+
+  const handleReturnLongitudeSign = useCallback(() => {
+    setReturnPointLongitude(-returnPointLongitude);
+  }, [returnPointLongitude, setReturnPointLongitude]);
 
   const handleElevationSign = useCallback(() => {
     setElevation(-elevation);
@@ -329,7 +337,7 @@ const Objective2Card: React.FunctionComponent = () => {
               justifyItems="start"
             >
               <Text>Latitude (°)</Text>
-              <Button onClick={handleLatitudeSign} size="xs">
+              <Button onClick={handleReturnLatitudeSign} size="xs">
                 +/-
               </Button>
               <NumberInput
@@ -337,7 +345,7 @@ const Objective2Card: React.FunctionComponent = () => {
                 onChange={setReturnPointLatitude}
               />
               <Text>Longitude (°)</Text>
-              <Button onClick={handleLongitudeSign} size="xs">
+              <Button onClick={handleReturnLongitudeSign} size="xs">
                 +/-
               </Button>
               <NumberInput
