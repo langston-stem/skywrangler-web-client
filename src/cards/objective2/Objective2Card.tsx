@@ -17,6 +17,7 @@ import {
   SliderMarkProps,
   SliderThumbProps,
   SliderTrackProps,
+  AccordionPanelProps,
 } from "@chakra-ui/react";
 import { Text, VStack } from "@chakra-ui/react";
 import {
@@ -71,6 +72,11 @@ const labelStyles = {
   mt: "2",
   ml: "-2.5",
   fontSize: "sm",
+};
+
+const accordianPanelProps: AccordionPanelProps = {
+  paddingBlock: "4px",
+  marginInline: "-12px",
 };
 
 const langstonBlue = "rgb(27,54,104)";
@@ -195,29 +201,32 @@ const Objective2Card: React.FunctionComponent = () => {
             </Box>
             <AccordionIcon />
           </AccordionButton>
-          <AccordionPanel pb={4}>
+          <AccordionPanel {...accordianPanelProps}>
             <SimpleGrid
-              columns={3}
+              columns={4}
               spacing={1}
-              gridTemplateColumns="100px 35px auto"
+              gridTemplateColumns="75px 35px auto 10px"
               alignItems="center"
               justifyItems="start"
             >
-              <Text>Latitude (°)</Text>
+              <Text>Latitude</Text>
               <Button onClick={handleLatitudeSign} size="xs">
                 +/-
               </Button>
               <NumberInput value={latitude} onChange={setLatitude} />
-              <Text>Longitude (°)</Text>
+              <Text>°</Text>
+              <Text>Longitude</Text>
               <Button onClick={handleLongitudeSign} size="xs">
                 +/-
               </Button>
               <NumberInput value={longitude} onChange={setLongitude} />
-              <Text>Elevation (m)</Text>
+              <Text>°</Text>
+              <Text>Elevation</Text>
               <Button onClick={handleElevationSign} size="xs">
                 +/-
               </Button>
               <NumberInput value={elevation} onChange={setElevation} />
+              <Text>m</Text>
             </SimpleGrid>
           </AccordionPanel>
         </AccordionItem>
@@ -231,7 +240,7 @@ const Objective2Card: React.FunctionComponent = () => {
             </Box>
             <AccordionIcon />
           </AccordionButton>
-          <AccordionPanel pb={4}>
+          <AccordionPanel {...accordianPanelProps} marginRight="4px">
             <SimpleGrid
               columns={2}
               spacing={10}
@@ -328,15 +337,15 @@ const Objective2Card: React.FunctionComponent = () => {
             </Box>
             <AccordionIcon />
           </AccordionButton>
-          <AccordionPanel pb={4}>
+          <AccordionPanel {...accordianPanelProps}>
             <SimpleGrid
-              columns={3}
+              columns={4}
               spacing={1}
-              gridTemplateColumns="100px 35px auto"
+              gridTemplateColumns="75px 35px auto 10px"
               alignItems="center"
               justifyItems="start"
             >
-              <Text>Latitude (°)</Text>
+              <Text>Latitude</Text>
               <Button onClick={handleReturnLatitudeSign} size="xs">
                 +/-
               </Button>
@@ -344,7 +353,8 @@ const Objective2Card: React.FunctionComponent = () => {
                 value={returnPointLatitude}
                 onChange={setReturnPointLatitude}
               />
-              <Text>Longitude (°)</Text>
+              <Text>°</Text>
+              <Text>Longitude</Text>
               <Button onClick={handleReturnLongitudeSign} size="xs">
                 +/-
               </Button>
@@ -352,6 +362,7 @@ const Objective2Card: React.FunctionComponent = () => {
                 value={returnPointLongitude}
                 onChange={setReturnPointLongitude}
               />
+              <Text>°</Text>
             </SimpleGrid>
           </AccordionPanel>
         </AccordionItem>
