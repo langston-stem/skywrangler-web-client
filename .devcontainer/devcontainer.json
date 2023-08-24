@@ -11,61 +11,65 @@
       "VARIANT": "16-bullseye"
     }
   },
-
-  // Set *default* container specific settings.json values on container create.
-  "settings": {
-    // Ensure VS Code uses the right shell for terminals and tasks.
-    "terminal.integrated.defaultProfile.linux": "bash",
-    "terminal.integrated.profiles.linux": {
-      "bash": {
-        "path": "/bin/bash",
-        "args": [
-          // Run login bash shell in VSCode integrated terminal
-          // needed to include /etc/profile and friends
-          "--login"
-        ]
-      }
-    },
-    "[javascript]": {
-      "editor.formatOnSave": true,
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "[typescript]": {
-      "editor.formatOnSave": true,
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "[typescriptreact]": {
-      "editor.formatOnSave": true,
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "[json]": {
-      "editor.formatOnSave": true,
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "customizations": {
+    "vscode": {
+      // Set *default* container specific settings.json values on container create.
+      "settings": {
+        // Ensure VS Code uses the right shell for terminals and tasks.
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "terminal.integrated.profiles.linux": {
+          "bash": {
+            "path": "/bin/bash",
+            "args": [
+              // Run login bash shell in VSCode integrated terminal
+              // needed to include /etc/profile and friends
+              "--login"
+            ]
+          }
+        },
+        "[javascript]": {
+          "editor.formatOnSave": true,
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[typescript]": {
+          "editor.formatOnSave": true,
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[typescriptreact]": {
+          "editor.formatOnSave": true,
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[json]": {
+          "editor.formatOnSave": true,
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        }
+      },
+      // Add the IDs of extensions you want installed when the container is created.
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
+      ]
     }
   },
-
-  // Add the IDs of extensions you want installed when the container is created.
-  "extensions": ["dbaeumer.vscode-eslint", "esbenp.prettier-vscode"],
-
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],
-
-  "appPort": ["3000:3000"],
-
-  "otherPortsAttributes": {"onAutoForward": "silent"},
-
-  "runArgs": ["--network=skywrangler-web"],
-
+  "appPort": [
+    "3000:3000"
+  ],
+  "otherPortsAttributes": {
+    "onAutoForward": "silent"
+  },
+  "runArgs": [
+    "--network=skywrangler-web"
+  ],
   // https://code.visualstudio.com/remote/advancedcontainers/improve-performance
   "mounts": [
     "source=try-node-node_modules,target=${containerWorkspaceFolder}/node_modules,type=volume"
   ],
-
+  "initializeCommand": "docker network create skywrangler-web || (exit 0)",
   "onCreateCommand": "sudo chmod 777 /workspaces",
-
   // Use 'postCreateCommand' to run commands after the container is created.
   "postCreateCommand": "sudo chown node node_modules && yarn install",
-
   // Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
   "remoteUser": "node"
 }
